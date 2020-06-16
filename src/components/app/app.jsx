@@ -11,8 +11,8 @@ const App = (props) => {
       promoGenre = {promoGenre}
       promoRelease= {promoRelease}
     />
-   );
- };
+  );
+};
 
 
-  export default App;
+export default App;
