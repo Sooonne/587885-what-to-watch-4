@@ -9,11 +9,12 @@ const PromoDefault = {
   RELEASE: 2017,
 };
 
+const MOVIE_TITLES = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
+
 ReactDOM.render(
   <App
-    promoTitle= {PromoDefault.TITLE}
-    promoGenre= {PromoDefault.GENRE}
-    promoRelease= {PromoDefault.RELEASE}
+    promoInfo = {PromoDefault}
+    movieTitles = {MOVIE_TITLES}
   />,
   document.querySelector(`#root`)
 );
