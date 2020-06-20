@@ -3,13 +3,11 @@ import propTypes, { string } from "prop-types";
 import Main from "../main/main.jsx";
 
 
-const App = ({promoTitle, promoGenre, promoRelease, movieTitles}) => {
+const App = ({promoInfo, movieTitles}) => {
   // const {promoTitle, promoGenre, promoRelease, movieTitles} = props;
   return (
     <Main
-      promoTitle = {promoTitle}
-      promoGenre = {promoGenre}
-      promoRelease= {promoRelease}
+      promoInfo = {promoInfo}
       movieTitles = {movieTitles}
 
     />
@@ -17,9 +15,7 @@ const App = ({promoTitle, promoGenre, promoRelease, movieTitles}) => {
 };
 
 App.propTypes = {
-  promoTitle: string.isRequired,
-  promoGenre: string.isRequired,
-  promoRelease: string.isRequired,
+  promoInfo: propTypes.object.isRequired,
   movieTitles: propTypes.arrayOf(propTypes.string).isRequired
 }
 
