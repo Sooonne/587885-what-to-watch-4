@@ -1,18 +1,27 @@
 import React from "react";
-// import Main from "../components/main/main";
+import propTypes, { string } from "prop-types";
 import Main from "../main/main.jsx";
 
 
-const App = (props) => {
-  const {promoTitle, promoGenre, promoRelease} = props;
+const App = ({promoTitle, promoGenre, promoRelease, movieTitles}) => {
+  // const {promoTitle, promoGenre, promoRelease, movieTitles} = props;
   return (
     <Main
       promoTitle = {promoTitle}
       promoGenre = {promoGenre}
       promoRelease= {promoRelease}
+      movieTitles = {movieTitles}
+
     />
   );
 };
+
+App.propTypes = {
+  promoTitle: string.isRequired,
+  promoGenre: string.isRequired,
+  promoRelease: string.isRequired,
+  movieTitles: propTypes.arrayOf(propTypes.string).isRequired
+}
 
 
 export default App;
