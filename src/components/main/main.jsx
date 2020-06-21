@@ -1,8 +1,8 @@
 import React from 'react';
-import propTypes, { string } from "prop-types";
-import MovieCard from '../movie-card/movie-card.jsx'
+import propTypes from "prop-types";
+import MovieCard from '../movie-card/movie-card.jsx';
 
-const Main = ({promoInfo, movieTitles}) => {
+const Main = ({promoInfo, movieTitles, onMovieTitleClick}) => {
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -103,6 +103,7 @@ const Main = ({promoInfo, movieTitles}) => {
                 <MovieCard
                   title = {movieTitle}
                   key = {movieTitle + index}
+                  onMovieTitleClick = {onMovieTitleClick}
                 />
               );
             })}
@@ -133,7 +134,8 @@ const Main = ({promoInfo, movieTitles}) => {
 
 Main.propTypes = {
   promoInfo: propTypes.object.isRequired,
-  movieTitles: propTypes.arrayOf(propTypes.string).isRequired
-}
+  movieTitles: propTypes.arrayOf(propTypes.string).isRequired,
+  onMovieTitleClick: propTypes.func.isRequired
+};
 
 export default Main;
