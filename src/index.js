@@ -9,13 +9,16 @@ const PromoDefault = {
   RELEASE: 2017,
 };
 
+const ON_MOVIE_TITLE_CLICK = () => {};
+
 const MOVIE_TITLES = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
 
 ReactDOM.render(
-  <App
-    promoInfo = {PromoDefault}
-    movieTitles = {MOVIE_TITLES}
-  />,
-  document.querySelector(`#root`)
+    <App
+      promoInfo = {PromoDefault}
+      movieTitles = {MOVIE_TITLES}
+      onMovieTitleClick = {ON_MOVIE_TITLE_CLICK}
+    />,
+    document.querySelector(`#root`)
 );
 
