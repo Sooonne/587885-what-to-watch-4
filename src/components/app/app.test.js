@@ -1,20 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
+import {MOVIES} from '../../mocks/movies';
+import {PROMO_FILM} from '../../mocks/promo-film';
 
 const onMovieTitleClick = () => {};
 
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
-      promoInfo = {
-        {
-          TITLE: `Star Wars`,
-          GENRE: `Drama`,
-          RELEASE: 2017,
-        }
-      }
-      movieTitles = {[`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`]}
+      promoInfo = {PROMO_FILM}
+      movies = {MOVIES}
       onMovieTitleClick = {onMovieTitleClick}
     />)
     .toJSON();

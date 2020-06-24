@@ -16,14 +16,15 @@ Enzyme.configure({
 it(`Should get MovieCard info by focus`, () => {
   const component = shallow(
       <MovieCard
-          movie = {mocksData}
-          onMovieTitleClick = {() => {}}
-          onMovieCardHover = {onMovieCardHover}
-    />
-    );
+        movie = {mocksData}
+        onMovieTitleClick = {() => {}}
+        onMovieCardHover = {onMovieCardHover}
+      />
+  );
 
-    component.find(`small-movie-card`).simulate(`mouseover`);
-    expect(onMovieCardHover).toHaveBeenCalledTimes(1);
-    onMovieCardHover.mockImplementation(() => mocksData);
-    expect(onMovieCardHover()).toBe(mocksData);
+  const card = component.find(`.small-movie-card`);
+  card.simulate(`mouseover`);
+  expect(onMovieCardHover).toHaveBeenCalledTimes(1);
+  onMovieCardHover.mockImplementation(() => mocksData);
+  expect(onMovieCardHover()).toBe(mocksData);
 });

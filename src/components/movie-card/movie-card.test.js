@@ -10,9 +10,9 @@ const movie = {
 it(`Should MovieCard render correctly`, () => {
   const tree = renderer
     .create(<MovieCard
-      movieTitles = {TITLE}
-      onClick = {() => {}}
-      onHover = {() => {}}
+      movie = {movie}
+      onMovieTitleClick = {() => {}}
+      onMovieCardHover = {() => {}}
     />)
     .toJSON();
 
