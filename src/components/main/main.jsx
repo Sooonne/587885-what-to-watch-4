@@ -1,8 +1,9 @@
 import React from 'react';
 import propTypes from "prop-types";
-import MovieCard from '../movie-card/movie-card.jsx';
+// import MovieCard from '../movie-card/movie-card.jsx';
+import MovieList from '../movie-list/movie-list.jsx';
 
-const Main = ({promoInfo, movieTitles, onMovieTitleClick}) => {
+const Main = ({promoInfo, movies, onMovieTitleClick}) => {
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -35,10 +36,10 @@ const Main = ({promoInfo, movieTitles, onMovieTitleClick}) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoInfo.TITLE}</h2>
+              <h2 className="movie-card__title">{promoInfo.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoInfo.GENRE}</span>
-                <span className="movie-card__year">{promoInfo.RELEASE}</span>
+                <span className="movie-card__genre">{promoInfo.genre}</span>
+                <span className="movie-card__year">{promoInfo.release}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -97,17 +98,12 @@ const Main = ({promoInfo, movieTitles, onMovieTitleClick}) => {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {movieTitles.map((movieTitle, index) => {
-              return (
-                <MovieCard
-                  title = {movieTitle}
-                  key = {movieTitle + index}
-                  onMovieTitleClick = {onMovieTitleClick}
-                />
-              );
-            })}
-          </div>
+
+          <MovieList
+            movies = {movies}
+            onMovieTitleClick = {onMovieTitleClick}
+          />
+
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -134,7 +130,7 @@ const Main = ({promoInfo, movieTitles, onMovieTitleClick}) => {
 
 Main.propTypes = {
   promoInfo: propTypes.object.isRequired,
-  movieTitles: propTypes.arrayOf(propTypes.string).isRequired,
+  movies: propTypes.arrayOf(propTypes.shape({title: propTypes.string, img: propTypes.string})),
   onMovieTitleClick: propTypes.func.isRequired
 };
 

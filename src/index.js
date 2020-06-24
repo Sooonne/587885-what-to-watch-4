@@ -1,22 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-
-
-const PromoDefault = {
-  TITLE: `Star Wars`,
-  GENRE: `Drama`,
-  RELEASE: 2017,
-};
+import {MOVIES} from "./mocks/movies.js";
+import {PROMO_FILM} from "./mocks/promo-film.js";
 
 const ON_MOVIE_TITLE_CLICK = () => {};
 
-const MOVIE_TITLES = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
-
 ReactDOM.render(
     <App
-      promoInfo = {PromoDefault}
-      movieTitles = {MOVIE_TITLES}
+      promoInfo = {PROMO_FILM}
+      movies = {MOVIES}
       onMovieTitleClick = {ON_MOVIE_TITLE_CLICK}
     />,
     document.querySelector(`#root`)
