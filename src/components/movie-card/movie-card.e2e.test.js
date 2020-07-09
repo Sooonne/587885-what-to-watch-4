@@ -17,7 +17,7 @@ it(`Should get MovieCard info by focus`, () => {
   const component = shallow(
       <MovieCard
         movie = {mocksData}
-        onMovieTitleClick = {() => {}}
+        onMovieClick = {() => {}}
         onMovieCardHover = {onMovieCardHover}
       />
   );
