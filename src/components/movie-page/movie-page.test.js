@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import MoviePage from "./movie-page.jsx";
 
 const movie = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -17,12 +17,10 @@ const movie = {
   id: 1,
 };
 
-it(`Should MovieCard render correctly`, () => {
+it(`Should MoviePage render correctly`, () => {
   const tree = renderer
-    .create(<MovieCard
-      movie = {movie}
-      onMovieTitleClick = {() => {}}
-      onMovieCardHover = {() => {}}
+    .create(<MoviePage
+      movieCard = {movie}
     />)
     .toJSON();
 

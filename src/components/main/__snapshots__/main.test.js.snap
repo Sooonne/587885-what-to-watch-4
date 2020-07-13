@@ -259,6 +259,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -277,7 +278,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -285,6 +285,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -293,7 +294,7 @@ Array [
             <img
               alt="Bohemian Rhapsody"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -303,7 +304,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               Bohemian Rhapsody
             </a>
@@ -311,6 +311,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -319,7 +320,7 @@ Array [
             <img
               alt="Macbeth"
               height="175"
-              src="img/macbeth.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -329,7 +330,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               Macbeth
             </a>
@@ -337,6 +337,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -345,7 +346,7 @@ Array [
             <img
               alt="Aviator"
               height="175"
-              src="img/aviator.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -355,7 +356,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               Aviator
             </a>
@@ -363,6 +363,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -371,7 +372,7 @@ Array [
             <img
               alt="We need to talk about Kevin"
               height="175"
-              src="img/we-need-to-talk-about-kevin.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -381,7 +382,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               We need to talk about Kevin
             </a>
@@ -389,6 +389,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -397,7 +398,7 @@ Array [
             <img
               alt="What We Do in the Shadows"
               height="175"
-              src="img/what-we-do-in-the-shadows.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -407,7 +408,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               What We Do in the Shadows
             </a>
@@ -415,6 +415,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -423,7 +424,7 @@ Array [
             <img
               alt="Pulp Fiction"
               height="175"
-              src="img/pulp-fiction.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -433,7 +434,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               Pulp Fiction
             </a>
@@ -441,6 +441,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseOver={[Function]}
         >
           <div
@@ -449,7 +450,7 @@ Array [
             <img
               alt="Snatch"
               height="175"
-              src="img/snatch.jpg"
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -459,7 +460,6 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-              onMovieTitleClick={[Function]}
             >
               Snatch
             </a>
