@@ -2,6 +2,8 @@ import React from "react";
 import propTypes from "prop-types";
 import Footer from '../footer/footer.jsx';
 import MovieLikeThis from "../movie-like-this/movie-like-this.jsx";
+import MovieNav from "../movie-nav/movie-nav.jsx";
+import MoviePageInfo from "../movie-page-info/movie-page-info.jsx";
 
 const MoviePage = ({movieCard, movies, onMovieClick}) => {
   return (
@@ -64,35 +66,11 @@ const MoviePage = ({movieCard, movies, onMovieClick}) => {
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+              <MovieNav/>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{movieCard.ratingScore}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">{movieCard.ratingCount} ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                {movieCard.description}
-
-                <p className="movie-card__director"><strong>{movieCard.director}</strong></p>
-
-                <p className="movie-card__starring"><strong>{movieCard.starring.join(`, `)} and other</strong></p>
-              </div>
+              <MoviePageInfo
+                movieCard = {movieCard}
+              />
             </div>
           </div>
         </div>
