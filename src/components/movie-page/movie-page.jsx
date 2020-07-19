@@ -1,8 +1,9 @@
 import React from "react";
 import propTypes from "prop-types";
 import Footer from '../footer/footer.jsx';
+import MovieLikeThis from "../movie-like-this/movie-like-this.jsx";
 
-const MoviePage = ({movieCard}) => {
+const MoviePage = ({movieCard, movies, onMovieClick}) => {
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -98,47 +99,11 @@ const MoviePage = ({movieCard}) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
-        </section>
+        <MovieLikeThis
+          movieCard = {movieCard}
+          movies = {movies}
+          onMovieClick = {onMovieClick}
+        />
 
         <Footer/>
       </div>
@@ -158,7 +123,21 @@ MoviePage.propTypes = {
     starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
     ratingScore: propTypes.number.isRequired,
     ratingCount: propTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  movies: propTypes.arrayOf(propTypes.shape({
+    title: propTypes.string.isRequired,
+    genre: propTypes.string.isRequired,
+    release: propTypes.number.isRequired,
+    bg: propTypes.string.isRequired,
+    poster: propTypes.string.isRequired,
+    description: propTypes.string.isRequired,
+    director: propTypes.string.isRequired,
+    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
+    ratingScore: propTypes.number.isRequired,
+    ratingCount: propTypes.number.isRequired,
+    src: propTypes.string.isRequired
+  })),
+  onMovieClick: propTypes.func.isRequired
 };
 
 export default MoviePage;

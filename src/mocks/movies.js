@@ -31,7 +31,7 @@ export const MOVIES = [
   },
   {
     title: `Macbeth`,
-    genre: `Drama`,
+    genre: `Comedy`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -46,7 +46,7 @@ export const MOVIES = [
   },
   {
     title: `Aviator`,
-    genre: `Drama`,
+    genre: `Comedy`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -61,7 +61,7 @@ export const MOVIES = [
   },
   {
     title: `We need to talk about Kevin`,
-    genre: `Drama`,
+    genre: `Thriller`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -76,7 +76,7 @@ export const MOVIES = [
   },
   {
     title: `What We Do in the Shadows`,
-    genre: `Drama`,
+    genre: `Thriller`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,

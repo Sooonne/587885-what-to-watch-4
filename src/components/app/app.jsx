@@ -4,8 +4,6 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-// const onMovieTitleClick = () => {};
-
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -36,6 +34,8 @@ class App extends PureComponent {
       return (
         <MoviePage
           movieCard = {currentMovie}
+          movies = {movies}
+          onMovieClick = {this.handleMovieClick}
         />
       );
     }
@@ -59,7 +59,10 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film">
             <MoviePage
-              movieCard={this.state.currentMovie} />
+              movieCard={this.state.currentMovie}
+              movies = {this.props.movies}
+              onMovieClick = {this.handleMovieClick}
+            />
           </Route>
         </Switch>
       </Router>
@@ -68,7 +71,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  // promoInfo: propTypes.object.isRequired,
   movies: propTypes.arrayOf(propTypes.shape({
     title: propTypes.string.isRequired,
     genre: propTypes.string.isRequired,
@@ -82,7 +84,6 @@ App.propTypes = {
     ratingCount: propTypes.number.isRequired,
     src: propTypes.string.isRequired
   })),
-  // onMovieTitleClick: propTypes.func.isRequired,
   movieCard: propTypes.shape({
     title: propTypes.string.isRequired,
     genre: propTypes.string.isRequired,
