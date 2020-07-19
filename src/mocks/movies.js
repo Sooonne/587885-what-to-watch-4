@@ -12,6 +12,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 1,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Bohemian Rhapsody`,
@@ -26,6 +27,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 2,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Macbeth`,
@@ -40,6 +42,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 3,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Aviator`,
@@ -54,6 +57,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 4,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `We need to talk about Kevin`,
@@ -68,6 +72,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 5,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `What We Do in the Shadows`,
@@ -82,6 +87,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 6,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Pulp Fiction`,
@@ -96,6 +102,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 7,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Snatch`,
@@ -110,6 +117,7 @@ export const MOVIES = [
     ratingScore: 8.9,
     ratingCount: 240,
     id: 8,
+    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   }
 ];
 

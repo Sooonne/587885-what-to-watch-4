@@ -11,4 +11,5 @@ export const PROMO_FILM = {
   ratingScore: 8.9,
   ratingCount: 240,
   id: 9,
+  src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };

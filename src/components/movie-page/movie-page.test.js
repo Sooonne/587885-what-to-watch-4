@@ -15,6 +15,7 @@ const movie = {
   ratingScore: 8.9,
   ratingCount: 240,
   id: 1,
+  src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`Should MoviePage render correctly`, () => {

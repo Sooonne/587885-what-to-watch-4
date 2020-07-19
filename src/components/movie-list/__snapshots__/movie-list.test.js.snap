@@ -7,15 +7,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Fantastic Beasts: The Crimes of Grindelwald"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -33,15 +33,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Bohemian Rhapsody"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -59,15 +59,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Macbeth"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -85,15 +85,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Aviator"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -111,15 +111,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="We need to talk about Kevin"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -137,15 +137,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="What We Do in the Shadows"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -163,15 +163,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Pulp Fiction"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>
@@ -189,15 +189,15 @@ exports[`Should MovieList render Correctly 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
     onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Snatch"
+      <video
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        muted={true}
         width="280"
       />
     </div>

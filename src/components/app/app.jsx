@@ -69,7 +69,19 @@ class App extends PureComponent {
 
 App.propTypes = {
   // promoInfo: propTypes.object.isRequired,
-  movies: propTypes.arrayOf(propTypes.shape({title: propTypes.string, img: propTypes.string})),
+  movies: propTypes.arrayOf(propTypes.shape({
+    title: propTypes.string.isRequired,
+    genre: propTypes.string.isRequired,
+    release: propTypes.number.isRequired,
+    bg: propTypes.string.isRequired,
+    poster: propTypes.string.isRequired,
+    description: propTypes.string.isRequired,
+    director: propTypes.string.isRequired,
+    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
+    ratingScore: propTypes.number.isRequired,
+    ratingCount: propTypes.number.isRequired,
+    src: propTypes.string.isRequired
+  })),
   // onMovieTitleClick: propTypes.func.isRequired,
   movieCard: propTypes.shape({
     title: propTypes.string.isRequired,
@@ -81,7 +93,8 @@ App.propTypes = {
     director: propTypes.string.isRequired,
     starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
     ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired
+    ratingCount: propTypes.number.isRequired,
+    src: propTypes.string.isRequired
   }).isRequired
 };
 

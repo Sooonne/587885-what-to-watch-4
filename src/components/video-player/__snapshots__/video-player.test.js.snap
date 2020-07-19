@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer Should render correctly 1`] = `
+<video
+  height="175"
+  muted={true}
+  width="280"
+/>
+`;
+
+exports[`VideoPlayer VideoPlayer should render correctly 1`] = `
+<video
+  height="175"
+  muted={true}
+  width="280"
+/>
+`;
