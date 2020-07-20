@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -71,32 +72,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  movies: propTypes.arrayOf(propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    src: propTypes.string.isRequired
-  })),
-  movieCard: propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    src: propTypes.string.isRequired
-  }).isRequired
+  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD
 };
 
 export default App;

@@ -1,5 +1,6 @@
 import React from "react";
-import propTypes from "prop-types";
+// import propTypes from "prop-types";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units";
 
 const MoviePageInfo = ({movieCard}) => {
   return (
@@ -24,18 +25,7 @@ const MoviePageInfo = ({movieCard}) => {
 };
 
 MoviePageInfo.propTypes = {
-  movieCard: propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired
-  }).isRequired,
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD
 };
 
 export default MoviePageInfo;

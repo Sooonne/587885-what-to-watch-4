@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import Review from "../review/review";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.jsx";
 
 const splitArray = (array, firstSlice, lastSlice) => {
   return array.slice(firstSlice, lastSlice);
@@ -39,16 +40,7 @@ const MoviePageReviews = ({comments}) => {
 };
 
 MoviePageReviews.propTypes = {
-  comments: propTypes.shape([{
-    id: propTypes.number.isRequired,
-    user: propTypes.shape({
-      id: propTypes.number.isRequired,
-      name: propTypes.string.isRequired
-    }),
-    rating: propTypes.number.isRequired,
-    comment: propTypes.string.isRequired,
-    date: propTypes.string.isRequired
-  }]).isRequired
+  comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired
 };
 
 export default MoviePageReviews;
