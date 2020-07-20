@@ -1,7 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
-import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.jsx";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const MAX_AMOUNT = 4;
 

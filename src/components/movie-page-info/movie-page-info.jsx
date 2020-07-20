@@ -1,6 +1,6 @@
 import React from "react";
 // import propTypes from "prop-types";
-import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const MoviePageInfo = ({movieCard}) => {
   return (

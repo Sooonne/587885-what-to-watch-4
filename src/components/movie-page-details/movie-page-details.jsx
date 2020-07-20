@@ -1,6 +1,6 @@
 import React from "react";
 // import propTypes from "prop-types";
-import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const MoviePageDetails = ({movieCard}) => {
   return (
@@ -14,7 +14,7 @@ const MoviePageDetails = ({movieCard}) => {
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <span className="movie-card__details-value">
-              {movieCard.starring.join(`<br>`)}
+              {movieCard.starring.join(`\n`)}
             </span>
           </p>
         </div>
@@ -22,7 +22,7 @@ const MoviePageDetails = ({movieCard}) => {
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{movieCard.runtime}</span>
+            <span className="movie-card__details-value">{movieCard.runTime}</span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>

@@ -1,21 +1,23 @@
 import React from "react";
 // import propTypes from "prop-types";
-import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const Review = ({review}) => {
   return (
-    <div className="review">
-      <blockquote className="review__quote">
-        <p className="review__text">{review.comment}</p>
+    <React.Fragment>
+      <div className="review">
+        <blockquote className="review__quote">
+          <p className="review__text">{review.comment}</p>
 
-        <footer className="review__details">
-          <cite className="review__author">{review.user.name}</cite>
-          <time className="review__date" dateTime="2015-11-18">{review.date.getMonth()} {review.date.getDate()} {review.date.getFullYear()}</time>
-        </footer>
-      </blockquote>
+          <footer className="review__details">
+            <cite className="review__author">{review.user.name}</cite>
+            <time className="review__date" dateTime="2015-11-18">{new Date(review.date).getMonth()}</time>
+          </footer>
+        </blockquote>
 
-      <div className="review__rating">{review.rating}</div>
-    </div>
+        <div className="review__rating">{review.rating}</div>
+      </div>
+    </React.Fragment>
   );
 };
 

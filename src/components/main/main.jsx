@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 // import MovieCard from '../movie-card/movie-card.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
 import Footer from '../footer/footer.jsx';
-import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.jsx";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const Main = ({promoInfo, movies, onMovieClick}) => {
   return (
