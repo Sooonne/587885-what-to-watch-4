@@ -2,6 +2,8 @@ import React from 'react';
 import propTypes from "prop-types";
 // import MovieCard from '../movie-card/movie-card.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
+import Footer from '../footer/footer.jsx';
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const Main = ({promoInfo, movies, onMovieClick}) => {
   return (
@@ -110,19 +112,7 @@ const Main = ({promoInfo, movies, onMovieClick}) => {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </React.Fragment>
   );
@@ -130,19 +120,7 @@ const Main = ({promoInfo, movies, onMovieClick}) => {
 
 Main.propTypes = {
   promoInfo: propTypes.object.isRequired,
-  movies: propTypes.arrayOf(propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    src: propTypes.string.isRequired
-  })),
+  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   onMovieClick: propTypes.func.isRequired
 };
 

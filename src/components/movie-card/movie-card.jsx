@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
 // import VideoPlayer from '../video-player/video-player';
 import VideoPlayer from '../video-player/video-player.jsx';
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 export default class MovieCard extends PureComponent {
   constructor(props) {
@@ -55,19 +56,7 @@ export default class MovieCard extends PureComponent {
 }
 
 MovieCard.propTypes = {
-  movie: propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    src: propTypes.string.isRequired
-  }),
+  movie: DEFAULT_PROPTYPES.MOVIE_CARD,
   onMovieClick: propTypes.func.isRequired,
   onMovieCardHover: propTypes.func.isRequired,
 };

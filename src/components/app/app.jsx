@@ -3,8 +3,7 @@ import propTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-
-// const onMovieTitleClick = () => {};
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -19,7 +18,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {movieCard, movies} = this.props;
+    const {movieCard, movies, reviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
     if (currentPage === `main`) {
@@ -36,6 +35,9 @@ class App extends PureComponent {
       return (
         <MoviePage
           movieCard = {currentMovie}
+          movies = {movies}
+          reviews = {reviews}
+          onMovieClick = {this.handleMovieClick}
         />
       );
     }
@@ -59,7 +61,10 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film">
             <MoviePage
-              movieCard={this.state.currentMovie} />
+              movieCard={this.state.currentMovie}
+              movies = {this.props.movies}
+              onMovieClick = {this.handleMovieClick}
+            />
           </Route>
         </Switch>
       </Router>
@@ -68,34 +73,9 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  // promoInfo: propTypes.object.isRequired,
-  movies: propTypes.arrayOf(propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    src: propTypes.string.isRequired
-  })),
-  // onMovieTitleClick: propTypes.func.isRequired,
-  movieCard: propTypes.shape({
-    title: propTypes.string.isRequired,
-    genre: propTypes.string.isRequired,
-    release: propTypes.number.isRequired,
-    bg: propTypes.string.isRequired,
-    poster: propTypes.string.isRequired,
-    description: propTypes.string.isRequired,
-    director: propTypes.string.isRequired,
-    starring: propTypes.arrayOf(propTypes.string.isRequired).isRequired,
-    ratingScore: propTypes.number.isRequired,
-    ratingCount: propTypes.number.isRequired,
-    src: propTypes.string.isRequired
-  }).isRequired
+  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
+  reviews: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW)
 };
 
 export default App;

@@ -1,14 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MoviePage from "./movie-page.jsx";
-import {MOVIE, MOVIES, REVIEWS} from "../../data-for-tests/data-for-tests.js";
+import MovieLikeThis from "./movie-like-this.test.js";
+import {MOVIE, MOVIES} from "../../data-for-tests/data-for-tests.js";
 
-it(`Should MoviePage render correctly`, () => {
+it(`Should MovieLikeThis render correctly`, () => {
   const tree = renderer
-    .create(<MoviePage
+    .create(<MovieLikeThis
       movieCard = {MOVIE}
       movies = {MOVIES}
-      reviews = {REVIEWS}
       onMovieClick = {() => {}}
     />)
     .toJSON();
