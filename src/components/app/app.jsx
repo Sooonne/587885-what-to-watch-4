@@ -4,13 +4,17 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
+import {PAGES} from "../../utils/const.js";
+import {getReviewsForMovie} from "../../utils/const.js";
+import {connect} from "react-redux";
+import {getAllGenres} from "../../utils/const.js";
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentPage: `main`,
+      currentPage: PAGES.MAIN,
       currentMovie: this.props.movieCard,
     };
 
@@ -18,25 +22,28 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {movieCard, movies, reviews} = this.props;
+    // const {movieCard, movies, reviews} = this.props;
+    const {movies, reviews} = this.props;
     const {currentPage, currentMovie} = this.state;
 
-    if (currentPage === `main`) {
+
+    if (currentPage === PAGES.MAIN) {
       return (
         <Main
-          promoInfo = {movieCard}
-          movies = {movies}
+          // promoInfo = {movieCard}
+          // movies = {movies}
+          genres = {getAllGenres(movies)}
           onMovieClick = {this.handleMovieClick}
         />
       );
     }
 
-    if (currentPage === `movie`) {
+    if (currentPage === PAGES.MOVIE) {
       return (
         <MoviePage
           movieCard = {currentMovie}
           movies = {movies}
-          reviews = {reviews}
+          reviews = {getReviewsForMovie(reviews, currentMovie)}
           onMovieClick = {this.handleMovieClick}
         />
       );
@@ -47,7 +54,7 @@ class App extends PureComponent {
 
   handleMovieClick(movie) {
     this.setState({
-      currentPage: `movie`,
+      currentPage: PAGES.MOVIE,
       currentMovie: movie,
     });
   }
@@ -74,8 +81,16 @@ class App extends PureComponent {
 
 App.propTypes = {
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
+  // movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
+  // promoInfo: DEFAULT_PROPTYPES.MOVIE_CARD,
   reviews: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW)
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  promoInfo: state.promoInfo,
+  movies: state.movies,
+  reviews: state.reviews,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

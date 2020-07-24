@@ -19,7 +19,7 @@ export const MOVIES = [
   },
   {
     title: `Bohemian Rhapsody`,
-    genre: `Drama`,
+    genre: `Documentary`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -109,7 +109,7 @@ export const MOVIES = [
   },
   {
     title: `Pulp Fiction`,
-    genre: `Drama`,
+    genre: `Crime`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -127,7 +127,7 @@ export const MOVIES = [
   },
   {
     title: `Snatch`,
-    genre: `Drama`,
+    genre: `Crime`,
     release: 2017,
     img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     bg: `img/bg-the-grand-budapest-hotel.jpg`,
