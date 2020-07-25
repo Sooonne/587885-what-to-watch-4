@@ -24,7 +24,7 @@ export const filterMoviesByGenre = (allMovies, activeGenre) => {
 };
 
 export const getReviewsForMovie = (allReviews, movie) => {
-  return allReviews.filter((it) => it.id === movie.genre);
+  return allReviews.filter((it) => it.id === movie.id);
 };
 
 export const getAllGenres = (allMovies) => {

@@ -3,7 +3,7 @@ import {MOVIES} from "./mocks/movies.js";
 import {MOVIE_CARD} from "./mocks/movie-card.js";
 import {COMMENTS} from "./mocks/comments.js";
 
-const initialState = {
+export const initialState = {
   movies: MOVIES,
   movieCard: MOVIE_CARD,
   reviews: COMMENTS,
