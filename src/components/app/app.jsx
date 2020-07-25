@@ -5,9 +5,8 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {PAGES} from "../../utils/const.js";
-import {getReviewsForMovie} from "../../utils/const.js";
 import {connect} from "react-redux";
-import {getAllGenres} from "../../utils/const.js";
+import {getAllGenres, getReviewsForMovie} from "../../utils/const.js";
 
 class App extends PureComponent {
   constructor(props) {
@@ -30,7 +29,7 @@ class App extends PureComponent {
     if (currentPage === PAGES.MAIN) {
       return (
         <Main
-          // promoInfo = {movieCard}
+          // movieCard = {movieCard}
           // movies = {movies}
           genres = {getAllGenres(movies)}
           onMovieClick = {this.handleMovieClick}
@@ -60,6 +59,7 @@ class App extends PureComponent {
   }
 
   render() {
+
     return (
       <Router>
         <Switch>
@@ -70,6 +70,7 @@ class App extends PureComponent {
             <MoviePage
               movieCard={this.state.currentMovie}
               movies = {this.props.movies}
+              reviews = {this.props.reviews}
               onMovieClick = {this.handleMovieClick}
             />
           </Route>
@@ -82,12 +83,12 @@ class App extends PureComponent {
 App.propTypes = {
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   // movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
-  // promoInfo: DEFAULT_PROPTYPES.MOVIE_CARD,
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   reviews: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW)
 };
 
 const mapStateToProps = (state) => ({
-  promoInfo: state.promoInfo,
+  movieCard: state.movieCard,
   movies: state.movies,
   reviews: state.reviews,
 });

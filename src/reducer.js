@@ -1,11 +1,11 @@
 import {extend, ALL_GENRES, filterMoviesByGenre} from "./utils/const.js";
 import {MOVIES} from "./mocks/movies.js";
-import {PROMO_FILM} from "./mocks/promo-film.js";
+import {MOVIE_CARD} from "./mocks/movie-card.js";
 import {COMMENTS} from "./mocks/comments.js";
 
 const initialState = {
   movies: MOVIES,
-  promoInfo: PROMO_FILM,
+  movieCard: MOVIE_CARD,
   reviews: COMMENTS,
   activeGenre: ALL_GENRES,
   filteredMovies: MOVIES,
@@ -17,8 +17,8 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  getMoviesByGenre: (allMovies, activeGenre) => {
-    const filteredMovies = filterMoviesByGenre(allMovies, activeGenre);
+  getMoviesByGenre: (activeGenre) => {
+    const filteredMovies = filterMoviesByGenre(MOVIES, activeGenre);
     return {
       type: ActionType.GET_MOVIES_BY_GENRE,
       payload: filteredMovies

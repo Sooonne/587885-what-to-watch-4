@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {App} from "./components/app/app.jsx";
 import {MOVIES} from "./mocks/movies.js";
-import {PROMO_FILM} from "./mocks/promo-film.js";
+import {MOVIE_CARD} from "./mocks/movie-card.js";
 import {COMMENTS} from "./mocks/comments.js";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
@@ -18,7 +18,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store = {store}>
       <App
-        movieCard = {PROMO_FILM}
+        movieCard = {MOVIE_CARD}
         movies = {MOVIES}
         reviews = {COMMENTS}
       />

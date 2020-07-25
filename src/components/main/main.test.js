@@ -9,7 +9,7 @@ const onMovieClick = () => {};
 it(`Should Main render correctly`, () => {
   const tree = renderer
     .create(<Main
-      promoInfo = {PROMO_FILM}
+      movieCard = {PROMO_FILM}
       movies = {MOVIES}
       onMovieClick = {onMovieClick}
     />,

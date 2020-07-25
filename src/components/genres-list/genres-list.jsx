@@ -4,6 +4,7 @@ import {getMaxGenres} from "../../utils/const.js";
 
 const GenresList = ({genres, activeGenre, onGenreClick}) => {
   const slicesGenres = getMaxGenres(genres);
+  // console.log(genres);
 
   return (
     <ul className="catalog__genres-list">

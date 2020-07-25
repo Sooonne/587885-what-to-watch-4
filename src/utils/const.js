@@ -24,17 +24,15 @@ export const filterMoviesByGenre = (allMovies, activeGenre) => {
 };
 
 export const getReviewsForMovie = (allReviews, movie) => {
-  return allReviews.filter((it) => it.id === movie.id);
+  return allReviews.filter((it) => it.id === movie.genre);
 };
 
 export const getAllGenres = (allMovies) => {
-  let genres = new Set();
-  genres.add(ALL_GENRES);
-  genres.add(allMovies.map((it) => it.genre));
-  return Array.from(genres);
+  const genres = new Set(allMovies.map((it) => it.genre));
+  return [ALL_GENRES].concat(...genres);
 };
 
 export const getMaxGenres = (genres) => {
-  return genres.slice(MAX_GENRES_AMOUNT);
+  return genres.slice(0, MAX_GENRES_AMOUNT);
 };
 

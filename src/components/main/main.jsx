@@ -8,7 +8,7 @@ import GenresList from '../genres-list/genres-list.jsx';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 
-export const Main = ({promoInfo, onMovieClick, genres, activeGenre, onGenreClick, filteredMovies}) => {
+export const Main = ({movieCard, onMovieClick, genres, activeGenre, onGenreClick, filteredMovies}) => {
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -41,10 +41,10 @@ export const Main = ({promoInfo, onMovieClick, genres, activeGenre, onGenreClick
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoInfo.title}</h2>
+              <h2 className="movie-card__title">{movieCard.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoInfo.genre}</span>
-                <span className="movie-card__year">{promoInfo.release}</span>
+                <span className="movie-card__genre">{movieCard.genre}</span>
+                <span className="movie-card__year">{movieCard.release}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -94,8 +94,8 @@ export const Main = ({promoInfo, onMovieClick, genres, activeGenre, onGenreClick
 };
 
 Main.propTypes = {
-  promoInfo: propTypes.object.isRequired,
-  // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  movieCard: propTypes.object.isRequired,
+  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   onMovieClick: propTypes.func.isRequired,
   genres: propTypes.arrayOf(string),
   activeGenre: propTypes.string.isRequired,
@@ -104,7 +104,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  promoInfo: state.promoInfo,
+  movieCard: state.movieCard,
   movies: state.movies,
   activeGenre: state.activeGenre,
   filteredMovies: state.filteredMovies,

@@ -1,4 +1,4 @@
-export const PROMO_FILM = {
+export const MOVIE_CARD = {
   title: `Star Wars`,
   genre: `Drama`,
   release: 2017,

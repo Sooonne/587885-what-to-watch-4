@@ -47,7 +47,7 @@ export const MOVIES = [
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     ratingScore: 8.9,
     ratingCount: 240,
-    id: 30,
+    id: 3,
     src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     bgColor: `#ffffff`,
     runTime: 0,
