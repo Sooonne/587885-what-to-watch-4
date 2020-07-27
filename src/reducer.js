@@ -2,7 +2,7 @@ import {extend, ALL_GENRES, filterMoviesByGenre} from "./utils/const.js";
 import {MOVIES} from "./mocks/movies.js";
 import {MOVIE_CARD} from "./mocks/movie-card.js";
 import {COMMENTS} from "./mocks/comments.js";
-import {getAllGenres} from "./utils/const.js";
+import {getAllGenres, SHOWED_MOVIES_AMOUNT} from "./utils/const.js";
 
 export const initialState = {
   movies: MOVIES,
@@ -11,11 +11,14 @@ export const initialState = {
   activeGenre: ALL_GENRES,
   filteredMovies: MOVIES,
   genres: getAllGenres(MOVIES),
+  showedMoviesAmount: SHOWED_MOVIES_AMOUNT,
 };
 
 const ActionType = {
   GET_MOVIES_BY_GENRE: `GET_MOVIES_BY_GENRE`,
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
+  SHOW_MORE_MOVIES: `SHOW_MORE_MOVIES`,
+  RESET_SHOWED_MOVIES: `RESET_SHOWED_MOVIES`,
 };
 
 const ActionCreator = {
@@ -32,6 +35,20 @@ const ActionCreator = {
       type: ActionType.SET_ACTIVE_GENRE,
       payload: activeGenre
     };
+  },
+
+  showMoreMovies: () => {
+    return {
+      type: ActionType.SHOW_MORE_MOVIES,
+      payload: SHOWED_MOVIES_AMOUNT
+    };
+  },
+
+  resetShowedMovies: () => {
+    return {
+      type: ActionType.RESET_SHOWED_MOVIES,
+      payload: SHOWED_MOVIES_AMOUNT
+    };
   }
 };
 
@@ -45,6 +62,16 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         filteredMovies: action.payload,
       });
+    case ActionType.SHOW_MORE_MOVIES:
+      let nextAmount = state.showedMoviesAmount + action.payload;
+      if (nextAmount > state.movies.length) {
+        return extend(state, {
+          showedMoviesAmount: state.movies.length
+        });
+      }
+      return extend(state, {showedMoviesAmount: nextAmount});
+    case ActionType.RESET_SHOWED_MOVIES:
+      return extend(state, {showedMoviesAmount: action.payload});
   }
   return state;
 };

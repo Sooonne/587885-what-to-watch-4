@@ -40,3 +40,5 @@ export const addPrefixtoUrl = (url, prefix) => {
   return prefix + url;
 };
 
+export const SHOWED_MOVIES_AMOUNT = 8;
+
