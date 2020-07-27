@@ -18,9 +18,9 @@ const store = createStore(
 ReactDOM.render(
     <Provider store = {store}>
       <App
-        movieCard = {MOVIE_CARD}
-        movies = {MOVIES}
-        reviews = {COMMENTS}
+        // movieCard = {MOVIE_CARD}
+        // movies = {MOVIES}
+        // reviews = {COMMENTS}
       />
     </Provider>, root
 

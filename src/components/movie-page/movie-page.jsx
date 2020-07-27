@@ -8,9 +8,11 @@ import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {PAGE_NAMES} from "../../utils/const.js";
+import {withRouter} from "react-router-dom/cjs/react-router-dom.min";
+import {connect} from "react-redux";
 
 
-export default class MoviePage extends PureComponent {
+export class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -27,9 +29,12 @@ export default class MoviePage extends PureComponent {
     });
   }
 
-  _renderMoviePage() {
-    const {movieCard, reviews} = this.props;
+  _renderMoviePage(movieCard, reviews) {
+    // const {movieCard, reviews} = this.props;
+    // const {movies, match:{params:{id}}} = this.props;
+    // console.log(match);
     const {currentPage} = this.state;
+    // const movieCard = movies.find((m) => m.id);
 
     if (currentPage === PAGE_NAMES.INFO) {
       return <MoviePageInfo
@@ -53,13 +58,15 @@ export default class MoviePage extends PureComponent {
   }
 
   render() {
-    const {movieCard, movies, onMovieClick} = this.props;
+    const {movies, match: {params: {id}}, reviews} = this.props;
+    const movieCard = movies.find((m) => m.id === +id);
+    const movieReviews = reviews.filter((r) => r.id === +id);
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src={movieCard.bg} alt={movieCard.title} />
+              <img src={movieCard.bg} alt={movieCard.title}/>
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
@@ -75,7 +82,7 @@ export default class MoviePage extends PureComponent {
 
               <div className="user-block">
                 <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+                  <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
                 </div>
               </div>
             </header>
@@ -119,7 +126,7 @@ export default class MoviePage extends PureComponent {
                   onNavClick = {this.handleNavClick}
                 />
 
-                {this._renderMoviePage()}
+                {this._renderMoviePage(movieCard, movieReviews)}
               </div>
             </div>
           </div>
@@ -129,7 +136,6 @@ export default class MoviePage extends PureComponent {
           <MovieLikeThis
             movieCard = {movieCard}
             movies = {movies}
-            onMovieClick = {onMovieClick}
           />
 
           <Footer/>
@@ -141,10 +147,14 @@ export default class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
-  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   reviews: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
-  onMovieClick: propTypes.func.isRequired
+  match: propTypes.object.isRequired,
 };
 
-// export default MoviePage;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  reviews: state.reviews,
+});
+
+export default connect(mapStateToProps)(withRouter(MoviePage));

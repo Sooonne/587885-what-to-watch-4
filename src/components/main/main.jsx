@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes, {string} from "prop-types";
-// import MovieCard from '../movie-card/movie-card.jsx';
 import MovieList from '../movie-list/movie-list.jsx';
 import Footer from '../footer/footer.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
@@ -8,7 +7,8 @@ import GenresList from '../genres-list/genres-list.jsx';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
 
-export const Main = ({movieCard, onMovieClick, genres, activeGenre, onGenreClick, filteredMovies}) => {
+export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovies}) => {
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -78,7 +78,6 @@ export const Main = ({movieCard, onMovieClick, genres, activeGenre, onGenreClick
 
           <MovieList
             movies = {filteredMovies}
-            onMovieClick = {onMovieClick}
           />
 
 
@@ -95,8 +94,7 @@ export const Main = ({movieCard, onMovieClick, genres, activeGenre, onGenreClick
 
 Main.propTypes = {
   movieCard: propTypes.object.isRequired,
-  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  onMovieClick: propTypes.func.isRequired,
+  // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   genres: propTypes.arrayOf(string),
   activeGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
@@ -108,7 +106,7 @@ const mapStateToProps = (state) => ({
   movies: state.movies,
   activeGenre: state.activeGenre,
   filteredMovies: state.filteredMovies,
-  // genres: state.genres,
+  genres: state.genres,
 });
 
 const mapDispatchToProps = (dispatch) => ({

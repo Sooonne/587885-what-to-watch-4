@@ -2,6 +2,7 @@ import {extend, ALL_GENRES, filterMoviesByGenre} from "./utils/const.js";
 import {MOVIES} from "./mocks/movies.js";
 import {MOVIE_CARD} from "./mocks/movie-card.js";
 import {COMMENTS} from "./mocks/comments.js";
+import {getAllGenres} from "./utils/const.js";
 
 export const initialState = {
   movies: MOVIES,
@@ -9,6 +10,7 @@ export const initialState = {
   reviews: COMMENTS,
   activeGenre: ALL_GENRES,
   filteredMovies: MOVIES,
+  genres: getAllGenres(MOVIES),
 };
 
 const ActionType = {

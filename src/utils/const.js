@@ -36,3 +36,7 @@ export const getMaxGenres = (genres) => {
   return genres.slice(0, MAX_GENRES_AMOUNT);
 };
 
+export const addPrefixtoUrl = (url, prefix) => {
+  return prefix + url;
+};
+
