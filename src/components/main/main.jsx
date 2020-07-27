@@ -1,11 +1,14 @@
 import React from 'react';
-import propTypes from "prop-types";
-// import MovieCard from '../movie-card/movie-card.jsx';
+import propTypes, {string} from "prop-types";
 import MovieList from '../movie-list/movie-list.jsx';
 import Footer from '../footer/footer.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
+import GenresList from '../genres-list/genres-list.jsx';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../reducer.js';
 
-const Main = ({promoInfo, movies, onMovieClick}) => {
+export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovies}) => {
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -38,10 +41,10 @@ const Main = ({promoInfo, movies, onMovieClick}) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoInfo.title}</h2>
+              <h2 className="movie-card__title">{movieCard.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoInfo.genre}</span>
-                <span className="movie-card__year">{promoInfo.release}</span>
+                <span className="movie-card__genre">{movieCard.genre}</span>
+                <span className="movie-card__year">{movieCard.release}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -67,43 +70,14 @@ const Main = ({promoInfo, movies, onMovieClick}) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
-
+          <GenresList
+            genres = {genres}
+            activeGenre = {activeGenre}
+            onGenreClick = {onGenreClick}
+          />
 
           <MovieList
-            movies = {movies}
-            onMovieClick = {onMovieClick}
+            movies = {filteredMovies}
           />
 
 
@@ -119,9 +93,27 @@ const Main = ({promoInfo, movies, onMovieClick}) => {
 };
 
 Main.propTypes = {
-  promoInfo: propTypes.object.isRequired,
-  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  onMovieClick: propTypes.func.isRequired
+  movieCard: propTypes.object.isRequired,
+  // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  genres: propTypes.arrayOf(string),
+  activeGenre: propTypes.string.isRequired,
+  onGenreClick: propTypes.func.isRequired,
+  filteredMovies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD)
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  movieCard: state.movieCard,
+  movies: state.movies,
+  activeGenre: state.activeGenre,
+  filteredMovies: state.filteredMovies,
+  genres: state.genres,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(genre) {
+    dispatch(ActionCreator.getMoviesByGenre(genre));
+    dispatch(ActionCreator.setActiveGenre(genre));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

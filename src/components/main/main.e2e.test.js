@@ -13,7 +13,7 @@ Enzyme.configure({
 it(`Should make Click on img for each movie card`, () => {
   const main = shallow(
       <Main
-        promoInfo = {PROMO_FILM}
+        movieCard = {PROMO_FILM}
         movies = {MOVIES}
         onMovieClick = {onMovieClick}
       />
@@ -29,7 +29,7 @@ it(`Should make Click on img for each movie card`, () => {
 it(`Should make Click on title for each movie card`, () => {
   const main = shallow(
       <Main
-        promoInfo = {PROMO_FILM}
+        movieCard = {PROMO_FILM}
         movies = {MOVIES}
         onMovieClick = {onMovieClick}
       />

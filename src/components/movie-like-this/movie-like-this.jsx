@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import MovieList from "../movie-list/movie-list.jsx";
+import {MovieList} from "../movie-list/movie-list.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const MAX_AMOUNT = 4;
@@ -20,7 +20,7 @@ const getSimilarFilmsByGenre = (allMovies, currentMovie) => {
   return filteredMovies;
 };
 
-const MovieLikeThis = ({movieCard, movies, onMovieClick}) => {
+const MovieLikeThis = ({movieCard, movies}) => {
 
   return (
     <React.Fragment>
@@ -28,7 +28,7 @@ const MovieLikeThis = ({movieCard, movies, onMovieClick}) => {
         <h2 className="catalog__title">More like this</h2>
         <MovieList
           movies = {getSimilarFilmsByGenre(movies, movieCard)}
-          onMovieClick = {onMovieClick}
+          // onMovieClick = {onMovieClick}
         />
       </section>
     </React.Fragment>
@@ -38,7 +38,7 @@ const MovieLikeThis = ({movieCard, movies, onMovieClick}) => {
 MovieLikeThis.propTypes = {
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  onMovieClick: propTypes.func.isRequired
+  // onMovieClick: propTypes.func.isRequired
 };
 
 export default MovieLikeThis;
