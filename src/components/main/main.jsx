@@ -6,9 +6,10 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import GenresList from '../genres-list/genres-list.jsx';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer.js';
+import ButtonMore from '../button-more/button-more.jsx';
 
-export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovies}) => {
-
+export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovies, onButtonMoreClick, showedMoviesAmount}) => {
+  const displayedMovies = filteredMovies.slice(0, showedMoviesAmount);
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -77,13 +78,11 @@ export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovi
           />
 
           <MovieList
-            movies = {filteredMovies}
+            movies = {displayedMovies}
           />
+          {showedMoviesAmount < filteredMovies.length && <ButtonMore
+            onButtonMoreClick = {onButtonMoreClick}/>}
 
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
 
         <Footer/>
@@ -98,7 +97,9 @@ Main.propTypes = {
   genres: propTypes.arrayOf(string),
   activeGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
-  filteredMovies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD)
+  filteredMovies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  showedMoviesAmount: propTypes.number.isRequired,
+  onButtonMoreClick: propTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -107,13 +108,18 @@ const mapStateToProps = (state) => ({
   activeGenre: state.activeGenre,
   filteredMovies: state.filteredMovies,
   genres: state.genres,
+  showedMoviesAmount: state.showedMoviesAmount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
     dispatch(ActionCreator.getMoviesByGenre(genre));
     dispatch(ActionCreator.setActiveGenre(genre));
+    dispatch(ActionCreator.resetShowedMovies());
   },
+  onButtonMoreClick() {
+    dispatch(ActionCreator.showMoreMovies());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
