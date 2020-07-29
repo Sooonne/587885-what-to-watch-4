@@ -28,7 +28,6 @@ const MovieLikeThis = ({movieCard, movies}) => {
         <h2 className="catalog__title">More like this</h2>
         <MovieList
           movies = {getSimilarFilmsByGenre(movies, movieCard)}
-          // onMovieClick = {onMovieClick}
         />
       </section>
     </React.Fragment>
@@ -38,7 +37,6 @@ const MovieLikeThis = ({movieCard, movies}) => {
 MovieLikeThis.propTypes = {
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  // onMovieClick: propTypes.func.isRequired
 };
 
 export default MovieLikeThis;

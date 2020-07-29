@@ -1,16 +1,12 @@
 import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
-// import VideoPlayer from '../video-player/video-player';
 import VideoPlayer from '../video-player/video-player.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
-// import {NavLink} from 'react-router-dom';
 import {withRouter} from 'react-router-dom/cjs/react-router-dom.min';
 
 class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    // movie = this.props.movie;
 
     this.state = {
       isPlaying: false,
@@ -65,10 +61,7 @@ class MovieCard extends PureComponent {
 
 MovieCard.propTypes = {
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
-  // onMovieClick: propTypes.func.isRequired,
   onMovieCardHover: propTypes.func.isRequired,
-  // match: propTypes.object.isRequired,
-  // location: propTypes.object.isRequired,
   history: propTypes.object.isRequired
 };
 
