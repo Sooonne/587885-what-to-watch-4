@@ -6,9 +6,9 @@ export default class VideoPlayer extends PureComponent {
     super(props);
 
     this._videoRef = createRef();
-    this.state = {
-      isLoading: true,
-    };
+    // this.state = {
+    //   isLoading: true,
+    // };
     this.isPlaying = this.props.isPlaying;
 
     this.timeout = null;
@@ -17,37 +17,44 @@ export default class VideoPlayer extends PureComponent {
   componentDidMount() {
     const {src, poster} = this.props;
     const video = this._videoRef.current;
+    if (video) {
+      video.src = src;
+      video.poster = poster;
+      video.muted = true;
+    }
 
-    video.src = src;
-    video.poster = poster;
 
-    video.oncanplaythrough = () => {
-      this.setState({
-        isLoading: false,
-      });
-    };
+    // video.oncanplaythrough = () => {
+    //   this.setState({
+    //     isLoading: false,
+    //   });
+    // };
   }
 
   componentWillUnmount() {
     const video = this._videoRef.current;
 
-    video.oncanplaythrough = null;
-    video.src = ``;
-    video.poster = ``;
-
-
+    if (video) {
+      video.onplay = null;
+      video.muted = null;
+      video.src = ``;
+      video.poster = ``;
+    }
   }
 
   render() {
+    const {src, poster} = this.props;
     return (
       <React.Fragment>
         <video
           width="280"
           height="175"
           ref={this._videoRef}
-          // onMouseOver={(evt) => evt.target.play()}
-          // onMouseOut={(evt) => evt.target.pause()}
-          muted>
+          src = {src}
+          poster = {poster}
+          // src={src}
+          // poster={poster}
+        >
         </video>
       </React.Fragment>
     );
@@ -56,14 +63,22 @@ export default class VideoPlayer extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
 
-    if (this.props.isPlaying) {
-      this._playTimeout = setTimeout(() => {
+
+    if (video) {
+      if (this.isPlaying) {
         video.play();
-      }, 1000);
-    } else {
-      video.load();
-      clearTimeout(this._playTimeout);
+      } else {
+        video.load();
+      }
     }
+    // if (this.props.isPlaying) {
+    //   this._playTimeout = setTimeout(() => {
+    //     video.play();
+    //   }, 1000);
+    // } else {
+    //   video.load();
+    //   clearTimeout(this._playTimeout);
+    // }
   }
 }
 

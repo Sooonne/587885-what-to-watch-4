@@ -2,8 +2,6 @@ import React, {PureComponent} from 'react';
 import propTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
-// import {Link} from 'react-router-dom';
-// import {NavLink} from 'react-router-dom';
 
 export class MovieList extends PureComponent {
   constructor(props) {
@@ -22,7 +20,6 @@ export class MovieList extends PureComponent {
 
   render() {
     const {movies} = this.props;
-    // console.log(movies);
     return (
       <React.Fragment>
         <div className="catalog__movies-list">
@@ -31,7 +28,6 @@ export class MovieList extends PureComponent {
               <MovieCard
                 key = {movie.id}
                 movie = {movie}
-                // onMovieClick = {onMovieClick}
                 onMovieCardHover = { () => {
                   this.setState({movie});
                 }}
@@ -47,7 +43,6 @@ export class MovieList extends PureComponent {
 
 MovieList.propTypes = {
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  // onMovieClick: propTypes.func.isRequired
 };
 
 export default MovieList;
