@@ -20,6 +20,7 @@ export class Player extends PureComponent {
 
     this._handlePlayOrPause = this._handlePlayOrPause.bind(this);
     this._handleFullScreen = this._handleFullScreen.bind(this);
+    this._renderVideo = this._renderVideo.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +33,7 @@ export class Player extends PureComponent {
       });
 
       video.ontimeupdate = () => this.setState({
-        progress: Math.trunc(video.progress)
+        progress: Math.trunc(video.currentTime)
       });
     }
   }
@@ -69,50 +70,57 @@ export class Player extends PureComponent {
     this._videoRef.current.requestFullscreen();
   }
 
+  _renderVideo(movie) {
+    return (
+      <video
+        ref={this._videoRef}
+        className="player__video"
+        poster={movie.poster}
+        src={movie.srcFull}
+      >
+      </video>
+    );
+
+  }
+
   render() {
     const {movies, match: {params: {id}}} = this.props;
     const movie = movies.find((m) => m.id === +id);
-    // console.log(movie);
-    // debugger;
+
     return (
-      <div className="player">
-        <video
-          ref={this._videoRef}
-          className="player__video"
-          poster={movie.poster}
-          src={movie.srcFull}
-        >
-        </video>
-        <Link className="player__exit" to={`/movie/${movie.id}`}></Link>
-        <button type="button" className="player__exit">Exit</button>
+      <React.Fragment>
+        <div className="player">
+          {this._renderVideo(movie)}
+          <Link className="player__exit" to={`/movie/${movie.id}`}>Exit</Link>
 
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value={this.state.progress} max={this.state.duration}></progress>
-              <div className="player__toggler" style={{left: `${((this.state.progress / this.state.duration) * 100)}%`}}>Toggler</div>
+          <div className="player__controls">
+            <div className="player__controls-row">
+              <div className="player__time">
+                <progress className="player__progress" value={this.state.progress} max={this.state.duration}></progress>
+                <div className="player__toggler" style={{left: `${((this.state.progress / this.state.duration) * 100)}%`}}>Toggler</div>
+              </div>
+              <div className="player__time-value">{this.state.duration}</div>
             </div>
-            <div className="player__time-value">{this.state.progress}</div>
-          </div>
 
-          <div className="player__controls-row">
-            <button type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width="19" height="19">
-                <use xlinkHref="#play-s"></use>
-              </svg>
-              <span>Play</span>
-            </button>
-            <div className="player__name">{movie.title}</div>
+            <div className="player__controls-row">
+              <button type="button" className="player__play" onClick={this._handlePlayOrPause}>
+                <svg viewBox="0 0 19 19" width="19" height="19">
+                  <use xlinkHref="#pause"></use>
+                </svg>
+                <span>Play</span>
+              </button>
+              <div className="player__name">{movie.title}</div>
 
-            <button type="button" className="player__full-screen" onClick={this._handleFullScreenButtonClick}>
-              <svg viewBox="0 0 27 27" width="27" height="27">
-                <use xlinkHref="#full-screen"></use>
-              </svg>
-              <span>Full screen</span>
-            </button>
+              <button type="button" className="player__full-screen" onClick={this._handleFullScreen}>
+                <svg viewBox="0 0 27 27" width="27" height="27">
+                  <use xlinkHref="#full-screen"></use>
+                </svg>
+                <span>Full screen</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
