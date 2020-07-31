@@ -1,23 +1,25 @@
-import React, {PureComponent, createRef} from 'react';
-import propTypes from 'prop-types';
+import React, {PureComponent, createRef} from "react";
+import propTypes from "prop-types";
 
-export default class VideoPlayer extends PureComponent {
+export default class VideoPlayerFullScreen extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      duration: 0,
+      progress: 0
+    };
+
     this._videoRef = createRef();
     this.isPlaying = this.props.isPlaying;
-
-    this.timeout = null;
   }
 
   componentDidMount() {
-    const {src, poster} = this.props;
+    const {src} = this.props;
     const video = this._videoRef.current;
     if (video) {
       video.src = src;
-      video.poster = poster;
-      video.muted = true;
+      // video.poster = poster;
     }
   }
 
@@ -25,23 +27,20 @@ export default class VideoPlayer extends PureComponent {
     const video = this._videoRef.current;
 
     if (video) {
-      video.onplay = null;
-      video.muted = null;
       video.src = ``;
-      video.poster = ``;
+      // video.poster = ``;
     }
   }
 
   render() {
-    const {src, poster} = this.props;
+    const {src} = this.props;
     return (
       <React.Fragment>
         <video
-          width="280"
-          height="175"
           ref={this._videoRef}
+          className="player__video"
           src = {src}
-          poster = {poster}
+          // poster = {poster}
         >
         </video>
       </React.Fragment>
@@ -51,20 +50,17 @@ export default class VideoPlayer extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
 
-
-    if (video) {
-      if (this.isPlaying) {
-        video.play();
-      } else {
-        video.load();
-      }
+    if (this.isPlaying) {
+      video.play();
+    } else {
+      video.pause();
     }
   }
 }
 
 
-VideoPlayer.propTypes = {
+VideoPlayerFullScreen.propTypes = {
   isPlaying: propTypes.bool.isRequired,
   src: propTypes.string.isRequired,
-  poster: propTypes.string.isRequired,
+  // poster: propTypes.string.isRequired,
 };

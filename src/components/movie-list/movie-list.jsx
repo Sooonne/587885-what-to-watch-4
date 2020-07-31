@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import propTypes from 'prop-types';
-import MovieCard from '../movie-card/movie-card.jsx';
+import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 export class MovieList extends PureComponent {
@@ -25,7 +25,7 @@ export class MovieList extends PureComponent {
         <div className="catalog__movies-list">
           {movies.map((movie) => {
             return (
-              <MovieCard
+              <SmallMovieCard
                 key = {movie.id}
                 movie = {movie}
                 onMovieCardHover = { () => {
