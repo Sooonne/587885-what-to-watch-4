@@ -1,6 +1,7 @@
 import React from "react";
 // import propTypes from "prop-types";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
+import {getRating} from "../../utils/const.js";
 
 const MoviePageInfo = ({movieCard}) => {
   return (
@@ -8,7 +9,7 @@ const MoviePageInfo = ({movieCard}) => {
       <div className="movie-rating">
         <div className="movie-rating__score">{movieCard.ratingScore}</div>
         <p className="movie-rating__meta">
-          <span className="movie-rating__level">Very good</span>
+          <span className="movie-rating__level">{getRating(movieCard.ratingScore)}</span>
           <span className="movie-rating__count">{movieCard.ratingCount} ratings</span>
         </p>
       </div>

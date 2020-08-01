@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import SmallMovieCard from "./small-movie-card.jsx";
 import {MOVIE} from "../../data-for-tests/data-for-tests";
 
-it(`Should MovieCard render correctly`, () => {
+it(`Should SmallMovieCard render correctly`, () => {
   const tree = renderer
-    .create(<MovieCard
+    .create(<SmallMovieCard
       movie = {MOVIE}
       onMovieClick = {() => {}}
       onMovieCardHover = {() => {}}

@@ -11,6 +11,7 @@ import {PAGE_NAMES} from "../../utils/const.js";
 import {withRouter} from "react-router-dom/cjs/react-router-dom.min";
 import {connect} from "react-redux";
 import Header from "../header/header.jsx";
+import {Link} from "react-router-dom";
 
 
 export class MoviePage extends PureComponent {
@@ -80,12 +81,18 @@ export class MoviePage extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <Link className="btn btn--play movie-card__button" to={`/player/${movieCard.id}`}>
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s"></use>
                     </svg>
                     <span>Play</span>
-                  </button>
+                  </Link>
+                  {/* <button className="btn btn--play movie-card__button" type="button">
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                    <span>Play</span>
+                  </button> */}
                   <button className="btn btn--list movie-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="#add"></use>

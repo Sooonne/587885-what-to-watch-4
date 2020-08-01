@@ -4,7 +4,7 @@ import VideoPlayer from '../video-player/video-player.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {withRouter} from 'react-router-dom/cjs/react-router-dom.min';
 
-class MovieCard extends PureComponent {
+class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -16,9 +16,6 @@ class MovieCard extends PureComponent {
   }
 
   _handleMovieClick() {
-    // const onMovieClick = this.props.onMovieClick;
-    // evt.preventDefault();
-    // onMovieClick(this.movie);
     const {movie, history} = this.props;
     history.push(`/movie/${movie.id}`);
   }
@@ -27,7 +24,6 @@ class MovieCard extends PureComponent {
   render() {
     const onMovieCardHover = this.props.onMovieCardHover;
     const {movie} = this.props;
-    // to = {`/movie/${movie.id}`}>
 
     return (
       <article className="small-movie-card catalog_movies-card"
@@ -59,11 +55,11 @@ class MovieCard extends PureComponent {
   }
 }
 
-MovieCard.propTypes = {
+SmallMovieCard.propTypes = {
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
   onMovieCardHover: propTypes.func.isRequired,
   history: propTypes.object.isRequired
 };
 
 
-export default withRouter(MovieCard);
+export default withRouter(SmallMovieCard);

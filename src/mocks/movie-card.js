@@ -12,6 +12,7 @@ export const MOVIE_CARD = {
   ratingCount: 240,
   id: 9,
   src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  srcFull: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   bgColor: `#ffffff`,
   runTime: 0,
   isFaborite: false,
