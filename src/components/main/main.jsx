@@ -5,9 +5,11 @@ import Footer from '../footer/footer.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import GenresList from '../genres-list/genres-list.jsx';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/app/app.js';
 import ButtonMore from '../button-more/button-more.jsx';
 import MovieCardHeader from "../movie-card-header/movie-card-header.jsx";
+import {getAllMoviesGenres, getMoviesByActiveGenre, getShowedMoviesAmount, getActiveGenre} from "../../reducer/app/selector.js";
+import {getMovies, getMovieCard} from "../../reducer/data/selector.js";
 
 export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovies, onButtonMoreClick, showedMoviesAmount}) => {
   const displayedMovies = filteredMovies.slice(0, showedMoviesAmount);
@@ -53,17 +55,17 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movieCard: state.movieCard,
-  movies: state.movies,
-  activeGenre: state.activeGenre,
-  filteredMovies: state.filteredMovies,
-  genres: state.genres,
-  showedMoviesAmount: state.showedMoviesAmount,
+  movieCard: getMovieCard(state),
+  movies: getMovies(state),
+  activeGenre: getActiveGenre(state),
+  filteredMovies: getMoviesByActiveGenre(state),
+  genres: getAllMoviesGenres(state),
+  showedMoviesAmount: getShowedMoviesAmount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
-    dispatch(ActionCreator.getMoviesByGenre(genre));
+    // dispatch(ActionCreator.getMoviesByGenre(genre));
     dispatch(ActionCreator.setActiveGenre(genre));
     dispatch(ActionCreator.resetShowedMovies());
   },

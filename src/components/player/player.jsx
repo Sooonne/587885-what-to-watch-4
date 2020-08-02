@@ -5,6 +5,7 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {withRouter} from 'react-router-dom/cjs/react-router-dom.min';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
+import {getMovies} from "../../reducer/data/selector.js";
 
 export class Player extends PureComponent {
   constructor(props) {
@@ -132,7 +133,7 @@ Player.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
+  movies: getMovies(state),
 });
 
 export default connect(mapStateToProps)(withRouter(Player));
