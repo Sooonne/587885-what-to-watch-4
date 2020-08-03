@@ -24,7 +24,7 @@ class SmallMovieCard extends PureComponent {
   render() {
     const onMovieCardHover = this.props.onMovieCardHover;
     const {movie} = this.props;
-
+    console.log(this.state.isPlaying);
     return (
       <article className="small-movie-card catalog_movies-card"
         onMouseOver={() => {

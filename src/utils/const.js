@@ -7,6 +7,12 @@ export const PAGE_NAMES = {
 export const PAGES = {
   MAIN: `main`,
   MOVIE: `movie`,
+  SIGN_IN: `signIn`,
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`
 };
 
 export const ALL_GENRES = `All genres`;
