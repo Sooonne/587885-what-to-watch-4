@@ -3,6 +3,7 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import Player from "../player/player.jsx";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {SignIn} from "../sign-in/sign-in.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -18,10 +19,6 @@ class App extends PureComponent {
             <Main
             />
           </Route>
-          {/* <Route exact path="/main">
-            <Main
-            />
-          </Route> */}
           <Route exact path="/movie/:id">
             <MoviePage
             />
@@ -32,6 +29,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/player/:id">
             <Player/>
+          </Route>
+          <Route exact path="/login">
+            <SignIn/>
           </Route>
         </Switch>
       </Router>

@@ -35,7 +35,7 @@ export class SignIn extends PureComponent {
 
     onSubmit({
       login: this.loginRef.current.value,
-      password: this.passwordRef.current.value,
+      password: this.passRef.current.value,
     });
   }
 
@@ -76,7 +76,7 @@ export class SignIn extends PureComponent {
                   name="user-password"
                   id="user-password"
                   required
-                  ref={this.passwordRef}
+                  ref={this.passRef}
                 />
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
