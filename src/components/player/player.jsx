@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
 // import VideoPlayerFullScreen from "../video-player-full-screen/video-player-full-screen.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
-import {withRouter} from 'react-router-dom/cjs/react-router-dom.min';
+import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {getMovies} from "../../reducer/data/selector.js";

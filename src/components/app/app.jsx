@@ -1,9 +1,13 @@
 import React, {PureComponent} from "react";
+import propTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import Player from "../player/player.jsx";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import {SignIn} from "../sign-in/sign-in.jsx";
+import {getAuthorizationStatus} from "../../reducer/user/selector.js";
+import {AuthorizationStatus} from "../../utils/const.js";
+import {connect} from 'react-redux';
 
 class App extends PureComponent {
   constructor(props) {
@@ -11,7 +15,8 @@ class App extends PureComponent {
   }
 
   render() {
-
+    const {isSignIn} = this.props;
+    // console.log(isSignIn);
     return (
       <Router>
         <Switch>
@@ -23,15 +28,13 @@ class App extends PureComponent {
             <MoviePage
             />
           </Route>
-          <Route exact path="/movie/:id">
-            <MoviePage
-            />
-          </Route>
           <Route exact path="/player/:id">
             <Player/>
           </Route>
           <Route exact path="/login">
-            <SignIn/>
+            {(isSignIn) ? <Redirect to="/" /> : <SignIn/>}
+            {/* <SignIn/> */}
+
           </Route>
         </Switch>
       </Router>
@@ -39,4 +42,14 @@ class App extends PureComponent {
   }
 }
 
-export {App};
+App.propTypes = {
+  isSignIn: propTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  isSignIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+});
+
+export default connect(mapStateToProps)(App);
+
+// export {App};
