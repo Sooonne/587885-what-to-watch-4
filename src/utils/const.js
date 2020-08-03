@@ -29,6 +29,10 @@ export const filterMoviesByGenre = (allMovies, activeGenre) => {
   return allMovies.filter((it) => it.genre === activeGenre);
 };
 
+export const getFavoriteMovies = (allMovies) => {
+  return allMovies.filter((it) => it.isFavorite === true);
+};
+
 export const getReviewsForMovie = (allReviews, movie) => {
   return allReviews.filter((it) => it.id === movie.id);
 };
@@ -62,3 +66,16 @@ export const getRating = (rating) => {
     return `Awesome`;
   }
 };
+
+export const getMovieTimeFormat = (movieTime) => {
+  const hours = Math.floor(movieTime / 60);
+  const minutes = movieTime - hours * 60;
+  return `${hours}h ${minutes}m`;
+};
+
+// export const getElapsedTime = (duration, progress) => {
+//   const dHours = Math.floor(duration / 360);
+//   const pHours = Math.floor(progress / 360);
+//   const dMinutes = Math.floor(d);
+// };
+

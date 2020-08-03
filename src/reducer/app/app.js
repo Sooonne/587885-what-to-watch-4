@@ -66,12 +66,13 @@ const reducer = (state = initialState, action) => {
     //   });
     case ActionType.SHOW_MORE_MOVIES:
       let nextAmount = state.showedMoviesAmount + action.payload;
-      if (nextAmount > state.movies.length) {
-        return extend(state, {
-          showedMoviesAmount: state.movies.length
-        });
-      }
+      // if (nextAmount > state.movies.length) {
+      //   return extend(state, {
+      //     showedMoviesAmount: state.movies.length
+      //   });
+      // }
       return extend(state, {showedMoviesAmount: nextAmount});
+
     case ActionType.RESET_SHOWED_MOVIES:
       return extend(state, {showedMoviesAmount: action.payload});
   }

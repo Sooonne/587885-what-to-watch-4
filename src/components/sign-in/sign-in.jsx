@@ -14,6 +14,7 @@ export class SignIn extends PureComponent {
     this.passRef = createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
+
   }
 
   _renderErrorMessage(isError) {
@@ -43,6 +44,7 @@ export class SignIn extends PureComponent {
 
   render() {
     const {isErrorAuth} = this.props;
+    // console.log(isErrorAuth);
     return (
       <div className="user-page">
         <header className="page-header user-page__head">

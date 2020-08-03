@@ -10,7 +10,7 @@ const Header = ({isSignIn, userInfo}) => {
     if (isLogin) {
       return (
         /* здесь будет ссылка на my list*/
-        <Link className="user-block" to="/">
+        <Link className="user-block" to="/mylist">
           <div className="user-block__avatar">
             <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
           </div>
@@ -53,7 +53,7 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isSignedIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+  isSignIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
   userInfo: getUserInfo(state),
 });
 

@@ -1,5 +1,6 @@
 import React from "react";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
+import {getMovieTimeFormat} from "../../utils/const.js";
 
 const MoviePageDetails = ({movieCard}) => {
   return (
@@ -21,7 +22,7 @@ const MoviePageDetails = ({movieCard}) => {
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{movieCard.runTime}</span>
+            <span className="movie-card__details-value">{getMovieTimeFormat(movieCard.runTime)}</span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>
