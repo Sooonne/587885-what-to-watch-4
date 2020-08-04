@@ -2,12 +2,16 @@ import React from "react";
 import propTypes from "prop-types";
 import Review from "../review/review.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getReviewes} from "../../reducer/data/selector.js";
+import {connect} from "react-redux";
 
 const splitArray = (array, firstSlice, lastSlice) => {
   return array.slice(firstSlice, lastSlice);
 };
 
-const MoviePageReviews = ({comments}) => {
+const MoviePageReviews = ({id, loadMovieReviewes, comments}) => {
+  loadMovieReviewes(id);
   return (
     <React.Fragment>
       <div className="movie-card__reviews movie-card__row">
@@ -41,8 +45,21 @@ const MoviePageReviews = ({comments}) => {
 };
 
 MoviePageReviews.propTypes = {
-  comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired
+  comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired,
+  id: propTypes.string.isRequired,
+  loadMovieReviewes: propTypes.func.isRequired
 };
 
-export default MoviePageReviews;
+const mapStateToProps = (state) => ({
+  comments: getReviewes(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadMovieReviewes(movieId) {
+    dispatch(DataOperation.loadMovieReviewes(movieId));
+  }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePageReviews);
 

@@ -17,7 +17,6 @@ class App extends PureComponent {
 
   render() {
     const {authStatus} = this.props;
-    // console.log(isSignIn);
     return (
       <Router>
         <Switch>
@@ -37,6 +36,7 @@ class App extends PureComponent {
             {/* <SignIn/> */}
           </Route>
           <Route exact path="/mylist">
+            {/* {loadMyMovies()} */}
             <MyList/>
           </Route>
         </Switch>
@@ -50,10 +50,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  // isSignIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
   authStatus: getAuthorizationStatus(state),
 });
 
 export default connect(mapStateToProps)(App);
 
-// export {App};

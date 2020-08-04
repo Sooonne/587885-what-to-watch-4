@@ -6,9 +6,11 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {getUserInfo} from "../../reducer/user/selector.js";
-import {getMoviesFromMyList} from "../../reducer/app/selector.js";
+import {getMoviesFromMyList} from "../../reducer/data/selector.js";
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 
-const MyList = ({favoriteMovies, userInfo}) => {
+const MyList = ({favoriteMovies, userInfo, loadMyMovies}) => {
+  loadMyMovies();
   return (
     <React.Fragment>
 
@@ -25,7 +27,7 @@ const MyList = ({favoriteMovies, userInfo}) => {
 
           <h1 className="page-title user-page__title">My list</h1>
 
-          <Link className="user-block" to="/">
+          <Link className="user-block" to="/mylist">
             <div className="user-block__avatar">
               <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />
             </div>
@@ -55,6 +57,7 @@ MyList.propTypes = {
     avatarUrl: propTypes.string.isRequired,
   }),
   favoriteMovies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  loadMyMovies: propTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -62,4 +65,10 @@ const mapStateToProps = (state) => ({
   favoriteMovies: getMoviesFromMyList(state),
 });
 
-export default connect(mapStateToProps)(MyList);
+const mapDispatchToProps = (dispatch) => ({
+  loadMyMovies() {
+    dispatch(DataOperation.loadFavoriteMovies());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);

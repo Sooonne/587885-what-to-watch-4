@@ -1,7 +1,8 @@
 import NameSpace from '../name-space';
 import {createSelector} from "reselect";
 import {getMovies} from "../data/selector.js";
-import {getAllGenres, filterMoviesByGenre, getFavoriteMovies} from "../../utils/const.js";
+import {getAllGenres, filterMoviesByGenre} from "../../utils/const.js";
+
 
 const NAME_SPACE = NameSpace.APP;
 
@@ -26,9 +27,4 @@ export const getMoviesByActiveGenre = createSelector(
     }
 );
 
-export const getMoviesFromMyList = createSelector(
-    getMovies,
-    (movies) => {
-      return getFavoriteMovies(movies);
-    }
-);
+

@@ -4,13 +4,15 @@ import {createMovie} from "../../adapter/adapter-movie";
 const initialState = {
   movies: [],
   movieCard: {},
-  reviews: [],
+  reviewes: [],
+  favoriteMovies: []
 };
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_MOVIE_CARD: `LOAD_MOVIE_CARD`,
-  LOAD_REVIEWS: `LOAD_REVIEWS`
+  LOAD_REVIEWES: `LOAD_REVIEWES`,
+  LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
 };
 
 const ActionCreator = {
@@ -26,12 +28,24 @@ const ActionCreator = {
       payload: movieCard,
     };
   },
-  loadRevies: (reviews) => {
+  loadReviwes: (reviewes) => {
     return {
-      type: ActionType.LOAD_REVIEWS,
-      payload: reviews,
+      type: ActionType.LOAD_REVIEWES,
+      payload: reviewes,
     };
   },
+  loadFavoriteMovies: (favoriteMovies) => {
+    return {
+      type: ActionType.LOAD_FAVORITE_MOVIES,
+      payload: favoriteMovies
+    };
+  },
+  loadMovieReviewes: (reviewes) => {
+    return {
+      type: ActionType.LOAD_REVIEWES,
+      payload: reviewes
+    }
+  }
 };
 
 const Operation = {
@@ -47,17 +61,32 @@ const Operation = {
     return api.get(`/films/promo`)
       .then((response) => {
         dispatch(ActionCreator.loadMovieCard(createMovie(response.data)));
-      })
-      .catch(() => {
-        dispatch(ActionCreator.catchError());
       });
   },
 
-  loadMovieReviews: (movieId) => (dispatch, getState, api) => {
+  loadMovieReviewes: (movieId) => (dispatch, getState, api) => {
     return api.get(`/comments/${movieId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadMovieReviews(response.data));
+        dispatch(ActionCreator.loadMovieReviewes(response.data));
       });
+  },
+
+  loadFavoriteMovies: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+    .then((response) => {
+      if (response.data) {
+        const favoriteMovies = response.data.map((m) => createMovie(m));
+        dispatch(ActionCreator.loadFavoriteMovies(favoriteMovies));
+      }
+    });
+  },
+
+  changeMovieFavoriteStatus: (movieId, isFavorite) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${movieId}/${isFavorite ? 1 : 0}`)
+    .then(() => {
+      dispatch(Operation.loadMovies());
+      dispatch(Operation.loadMovieCard());
+    });
   },
 };
 
@@ -71,9 +100,13 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         movieCard: action.payload
       });
-    case ActionType.LOAD_REVIEWS:
+    case ActionType.LOAD_REVIEWES:
       return extend(state, {
-        reviews: action.payload
+        reviewes: action.payload
+      });
+    case ActionType.LOAD_FAVORITE_MOVIES:
+      return extend(state, {
+        favoriteMovies: action.payload,
       });
   }
 
