@@ -8,10 +8,11 @@ import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {PAGE_NAMES} from "../../utils/const.js";
-import {withRouter} from "react-router-dom/cjs/react-router-dom.min";
+import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
+import {getMovies, getReviews} from "../../reducer/data/selector.js";
 
 
 export class MoviePage extends PureComponent {
@@ -144,8 +145,8 @@ MoviePage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  reviews: state.reviews,
+  movies: getMovies(state),
+  reviews: getReviews(state),
 });
 
 export default connect(mapStateToProps)(withRouter(MoviePage));

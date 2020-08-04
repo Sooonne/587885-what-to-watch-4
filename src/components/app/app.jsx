@@ -1,8 +1,14 @@
 import React, {PureComponent} from "react";
+import propTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import Player from "../player/player.jsx";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import SignIn from "../sign-in/sign-in.jsx";
+import {getAuthorizationStatus} from "../../reducer/user/selector.js";
+import {AuthorizationStatus} from "../../utils/const.js";
+import {connect} from 'react-redux';
+import MyList from "../my-list/my-list.jsx";
 
 class App extends PureComponent {
   constructor(props) {
@@ -10,20 +16,13 @@ class App extends PureComponent {
   }
 
   render() {
-
+    const {authStatus} = this.props;
+    // console.log(isSignIn);
     return (
       <Router>
         <Switch>
           <Route exact path="/">
             <Main
-            />
-          </Route>
-          {/* <Route exact path="/main">
-            <Main
-            />
-          </Route> */}
-          <Route exact path="/movie/:id">
-            <MoviePage
             />
           </Route>
           <Route exact path="/movie/:id">
@@ -33,10 +32,28 @@ class App extends PureComponent {
           <Route exact path="/player/:id">
             <Player/>
           </Route>
+          <Route exact path="/login">
+            {(authStatus === AuthorizationStatus.AUTH) ? <Redirect to="/" /> : <SignIn/>}
+            {/* <SignIn/> */}
+          </Route>
+          <Route exact path="/mylist">
+            <MyList/>
+          </Route>
         </Switch>
       </Router>
     );
   }
 }
 
-export {App};
+App.propTypes = {
+  authStatus: propTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  // isSignIn: getAuthorizationStatus(state) === AuthorizationStatus.AUTH,
+  authStatus: getAuthorizationStatus(state),
+});
+
+export default connect(mapStateToProps)(App);
+
+// export {App};

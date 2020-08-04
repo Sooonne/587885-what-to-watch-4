@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
 import VideoPlayer from '../video-player/video-player.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
-import {withRouter} from 'react-router-dom/cjs/react-router-dom.min';
+import {withRouter} from 'react-router-dom';
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -24,7 +24,6 @@ class SmallMovieCard extends PureComponent {
   render() {
     const onMovieCardHover = this.props.onMovieCardHover;
     const {movie} = this.props;
-
     return (
       <article className="small-movie-card catalog_movies-card"
         onMouseOver={() => {

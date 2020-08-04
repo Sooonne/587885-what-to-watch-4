@@ -7,6 +7,12 @@ export const PAGE_NAMES = {
 export const PAGES = {
   MAIN: `main`,
   MOVIE: `movie`,
+  SIGN_IN: `signIn`,
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`
 };
 
 export const ALL_GENRES = `All genres`;
@@ -21,6 +27,10 @@ export const filterMoviesByGenre = (allMovies, activeGenre) => {
     return allMovies;
   }
   return allMovies.filter((it) => it.genre === activeGenre);
+};
+
+export const getFavoriteMovies = (allMovies) => {
+  return allMovies.filter((it) => it.isFavorite === true);
 };
 
 export const getReviewsForMovie = (allReviews, movie) => {
@@ -56,3 +66,16 @@ export const getRating = (rating) => {
     return `Awesome`;
   }
 };
+
+export const getMovieTimeFormat = (movieTime) => {
+  const hours = Math.floor(movieTime / 60);
+  const minutes = movieTime - hours * 60;
+  return `${hours}h ${minutes}m`;
+};
+
+// export const getElapsedTime = (duration, progress) => {
+//   const dHours = Math.floor(duration / 360);
+//   const pHours = Math.floor(progress / 360);
+//   const dMinutes = Math.floor(d);
+// };
+

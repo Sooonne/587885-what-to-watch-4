@@ -53,7 +53,7 @@ export default class VideoPlayer extends PureComponent {
 
 
     if (video) {
-      if (this.isPlaying) {
+      if (this.props.isPlaying) {
         video.play();
       } else {
         video.load();
