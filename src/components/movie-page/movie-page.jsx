@@ -26,12 +26,18 @@ export class MoviePage extends PureComponent {
     };
 
     this.handleNavClick = this.handleNavClick.bind(this);
+    this._handleReviewButtonClick = this._handleReviewButtonClick.bind(this);
   }
 
   handleNavClick(nav) {
     this.setState({
       currentPage: nav
     });
+  }
+
+  _handleReviewButtonClick() {
+    const {match: {params: {id}}, history} = this.props;
+    history.push(`/movie/${id}/review`);
   }
 
 
@@ -67,6 +73,7 @@ export class MoviePage extends PureComponent {
     const {movies, match: {params: {id}}} = this.props;
     const movieCard = movies.find((m) => m.id === +id);
 
+    // debugger;
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
@@ -97,7 +104,8 @@ export class MoviePage extends PureComponent {
                   <MyListButton
                     movie = {movieCard}
                   />
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  <a onClick={this._handleReviewButtonClick} className="btn movie-card__button">Add review</a>
+                  {/* <Link to="./review" className="btn movie-card__button">Add review</Link> */}
                 </div>
               </div>
             </div>
@@ -139,7 +147,8 @@ MoviePage.propTypes = {
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   // reviewes: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
   match: propTypes.object.isRequired,
-  loadMovieReviewes: propTypes.func.isRequired,
+  // loadMovieReviewes: propTypes.func.isRequired,
+  history: propTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -154,3 +163,4 @@ const mapStateToProps = (state) => ({
 // });
 
 export default connect(mapStateToProps)(withRouter(MoviePage));
+
