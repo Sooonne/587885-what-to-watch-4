@@ -2,6 +2,7 @@ import React from "react";
 import propTypes from "prop-types";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
+import MyListButton from "../my-list-button/my-list-button.jsx";
 
 const MovieCardHeader = ({movieCard}) => {
   return (
@@ -41,12 +42,14 @@ const MovieCardHeader = ({movieCard}) => {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
+                {/* <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                </button>
+                </button> */}
+                <MyListButton
+                  movie={movieCard}/>
               </div>
             </div>
           </div>

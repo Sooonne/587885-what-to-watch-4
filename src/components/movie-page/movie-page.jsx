@@ -12,7 +12,9 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
-import {getMovies, getReviews} from "../../reducer/data/selector.js";
+import {getMovies} from "../../reducer/data/selector.js";
+import MyListButton from "../my-list-button/my-list-button.jsx";
+// import {Operation as DataOperation} from '../../reducer/data/data.js';
 
 
 export class MoviePage extends PureComponent {
@@ -32,7 +34,8 @@ export class MoviePage extends PureComponent {
     });
   }
 
-  _renderMoviePage(movieCard, reviews) {
+
+  _renderMoviePage(movieCard) {
 
     const {currentPage} = this.state;
 
@@ -49,18 +52,21 @@ export class MoviePage extends PureComponent {
     }
 
     if (currentPage === PAGE_NAMES.REVIEWS) {
+      // loadMovieReviewes(movieCard.id);
       return <MoviePageReviews
-        comments = {reviews}
+        id = {movieCard.id}
       />;
     }
 
     return null;
   }
 
+  // componentDidMount()
+
   render() {
-    const {movies, match: {params: {id}}, reviews} = this.props;
+    const {movies, match: {params: {id}}} = this.props;
     const movieCard = movies.find((m) => m.id === +id);
-    const movieReviews = reviews.filter((r) => r.id === +id);
+
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
@@ -88,18 +94,9 @@ export class MoviePage extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </Link>
-                  {/* <button className="btn btn--play movie-card__button" type="button">
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button> */}
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
+                  <MyListButton
+                    movie = {movieCard}
+                  />
                   <a href="add-review.html" className="btn movie-card__button">Add review</a>
                 </div>
               </div>
@@ -118,7 +115,7 @@ export class MoviePage extends PureComponent {
                   onNavClick = {this.handleNavClick}
                 />
 
-                {this._renderMoviePage(movieCard, movieReviews)}
+                {this._renderMoviePage(movieCard)}
               </div>
             </div>
           </div>
@@ -140,13 +137,20 @@ export class MoviePage extends PureComponent {
 
 MoviePage.propTypes = {
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  reviews: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
+  // reviewes: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
   match: propTypes.object.isRequired,
+  loadMovieReviewes: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state),
-  reviews: getReviews(state),
+  // reviewes: getReviewes(state),
 });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   loadMovieReviewes(movieId) {
+//     dispatch(DataOperation.loadMovieReviewes(movieId));
+//   }
+// });
 
 export default connect(mapStateToProps)(withRouter(MoviePage));
