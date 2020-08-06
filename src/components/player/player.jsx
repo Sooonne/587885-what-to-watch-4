@@ -87,7 +87,11 @@ export class Player extends PureComponent {
   render() {
     const {movies, match: {params: {id}}} = this.props;
     const movie = movies.find((m) => m.id === +id);
-
+    if (!movie) {
+      return (
+        <div>loading!</div>
+      );
+    }
     return (
       <React.Fragment>
         <div className="player">

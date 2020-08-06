@@ -46,7 +46,7 @@ const MoviePageReviews = ({id, loadMovieReviewes, comments}) => {
 
 MoviePageReviews.propTypes = {
   comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired,
-  id: propTypes.string.isRequired,
+  id: propTypes.number.isRequired,
   loadMovieReviewes: propTypes.func.isRequired
 };
 

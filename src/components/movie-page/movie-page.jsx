@@ -8,12 +8,13 @@ import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {PAGE_NAMES} from "../../utils/const.js";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
+// import {withRouter} from "react-router-dom";
+// import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
-import {getMovies} from "../../reducer/data/selector.js";
+// import {getMovies} from "../../reducer/data/selector.js";
 import MyListButton from "../my-list-button/my-list-button.jsx";
+// import { MovieRoute } from "../movie-route/movie-route.jsx";
 // import {Operation as DataOperation} from '../../reducer/data/data.js';
 
 
@@ -26,7 +27,7 @@ export class MoviePage extends PureComponent {
     };
 
     this.handleNavClick = this.handleNavClick.bind(this);
-    this._handleReviewButtonClick = this._handleReviewButtonClick.bind(this);
+    // this._handleReviewButtonClick = this._handleReviewButtonClick.bind(this);
   }
 
   handleNavClick(nav) {
@@ -35,10 +36,10 @@ export class MoviePage extends PureComponent {
     });
   }
 
-  _handleReviewButtonClick() {
-    const {match: {params: {id}}, history} = this.props;
-    history.push(`/movie/${id}/review`);
-  }
+  // _handleReviewButtonClick() {
+  //   const {movieCard: {id}} = this.props;
+  //   history.push(`/movie/${id}/review`);
+  // }
 
 
   _renderMoviePage(movieCard) {
@@ -70,10 +71,8 @@ export class MoviePage extends PureComponent {
   // componentDidMount()
 
   render() {
-    const {movies, match: {params: {id}}} = this.props;
-    const movieCard = movies.find((m) => m.id === +id);
+    const {movieCard, movies} = this.props;
 
-    // debugger;
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
@@ -104,8 +103,8 @@ export class MoviePage extends PureComponent {
                   <MyListButton
                     movie = {movieCard}
                   />
-                  <a onClick={this._handleReviewButtonClick} className="btn movie-card__button">Add review</a>
-                  {/* <Link to="./review" className="btn movie-card__button">Add review</Link> */}
+                  {/* <a onClick={this._handleReviewButtonClick} className="btn movie-card__button">Add review</a> */}
+                  <Link to={`./${movieCard.id}/review`} className="btn movie-card__button">Add review</Link>
                 </div>
               </div>
             </div>
@@ -144,23 +143,13 @@ export class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   // reviewes: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
-  match: propTypes.object.isRequired,
-  // loadMovieReviewes: propTypes.func.isRequired,
-  history: propTypes.object.isRequired
+
+
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  // reviewes: getReviewes(state),
-});
+export default MoviePage;
 
-// const mapDispatchToProps = (dispatch) => ({
-//   loadMovieReviewes(movieId) {
-//     dispatch(DataOperation.loadMovieReviewes(movieId));
-//   }
-// });
-
-export default connect(mapStateToProps)(withRouter(MoviePage));
 

@@ -93,7 +93,7 @@ it(`Reducer can show all movies if movies + moremovies > movies`, () => {
     type: ActionType.SHOW_MORE_MOVIES,
     payload: 1000
   })).toEqual({
-    showedMoviesAmount: 24,
+    showedMoviesAmount: 1007,
     movies: MOVIES
   });
 });

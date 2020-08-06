@@ -11,6 +11,8 @@ const ReviewLength = {
   MAX: 400,
 };
 
+export const RATINGS_MAX_STARS = 5;
+
 export class AddReview extends PureComponent {
   constructor(props) {
     super(props);
@@ -39,40 +41,21 @@ export class AddReview extends PureComponent {
   }
 
   _handleSubmitButtonClick(evt) {
-    const {match: {params: {id}}, onReviewButtonSubmit} = this.props;
-    // const {onReviewButtonSubmit} = this.props;
-    // const movieCard = movies.find((m) => m.id === +id);
+    const {movieCard: {id}} = this.props;
     const review = {
-      rstingScore: this.state.ratingScore,
+      ratingScore: this.state.ratingScore,
       text: this.state.text
     };
     evt.preventDefault();
-    onReviewButtonSubmit(id, review);
+    DataOperation.sendReview(id, review);
+    // debugger;
+    // onReviewButtonSubmit(id, review);
+    // debugger;
+    history.back();
   }
 
   render() {
-    const {movies, match: {params: {id}}} = this.props;
-    const movieCard = movies.find((m) => m.id === +id);
-    debugger;
-    // console.log(movies, id);
-    // const movieCard = {title: `Star Wars`,
-    //   genre: `Drama`,
-    //   release: 2017,
-    //   img: `/img/the-grand-budapest-hotel.jpg`,
-    //   bg: `/img/bg-the-grand-budapest-hotel.jpg`,
-    //   poster: `/img/the-grand-budapest-hotel-poster.jpg`,
-    //   description: `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.`,
-    //   director: `Wes Andreson`,
-    //   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
-    //   ratingScore: 8.9,
-    //   ratingCount: 240,
-    //   id: 9,
-    //   src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    //   srcFull: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    //   bgColor: `#ffffff`,
-    //   runTime: 0,
-    //   isFaborite: false};
-    // debugger;
+    const {movieCard} = this.props;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -119,8 +102,24 @@ export class AddReview extends PureComponent {
           <form action="#" className="add-review__form"
             onSubmit={this._handleSubmitButtonClick}>
             <div className="rating">
-              <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+              <div className="rating__stars" onChange={this._handleRatingChange}>
+                {Array.from(Array(RATINGS_MAX_STARS)).map((_, index) => {
+                  const rating = index + 1;
+                  return (
+                    <React.Fragment key={rating}>
+                      <input
+                        className="rating__input"
+                        id={`star-${rating}`}
+                        type="radio"
+                        name="rating"
+                        value={rating}
+                        // disabled={isRadioDisabled}
+                      />
+                      <label className="rating__label" htmlFor={`star-${rating}`}>Rating {rating}</label>
+                    </React.Fragment>
+                  );
+                })}
+                {/* <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
                 <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
@@ -133,14 +132,28 @@ export class AddReview extends PureComponent {
                 <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
                 <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-                <label className="rating__label" htmlFor="star-5">Rating 5</label>
+                <label className="rating__label" htmlFor="star-5">Rating 5</label> */}
               </div>
             </div>
 
             <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+              <textarea className="add-review__textarea"
+                name="review-text" id="review-text"
+                placeholder="Review text"
+                onChange={this._handleReviewTextChange}
+                minLength={ReviewLength.MIN}
+                maxLength={ReviewLength.MAX}></textarea>
+
+
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
+                {/* <LinkWrapper
+                  isDisabled = {this.state.isButtonDisabled}
+                  link = {`/movie/${movieCard.id}`}
+                > */}
+                {/* <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}>Post</button> */}
+                {/* <input className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled} name="Post" placeholder="Post"/> */}
+                {/* </LinkWrapper> */}
+                <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}>Post</button>
               </div>
 
             </div>
@@ -153,21 +166,22 @@ export class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  // movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
-  onReviewButtonSubmit: propTypes.func.isRequired,
-  match: propTypes.object.isRequired,
+  // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
+  onReviewButtonSubmit: propTypes.any,
+  // match: propTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onReviewButtonSubmit(id, review) {
-    dispatch(DataOperation.sendReview(id, review));
-  }
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   onReviewButtonSubmit(id, review) {
+//     dispatch(DataOperation.sendReview(id, review));
+//   }
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddReview));
+export default connect(mapStateToProps)(withRouter(AddReview));
+// export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
 
