@@ -18,8 +18,6 @@ export class SignIn extends PureComponent {
   }
 
   _renderErrorMessage(isError) {
-    // const {isErrorAuth} = this.props;
-
     if (isError) {
       return (
         <div className="sign-in__message">

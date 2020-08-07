@@ -4,6 +4,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import SmallMovieCard from './small-movie-card.jsx';
 import {MOVIE} from "../../data-for-tests/data-for-tests";
 
+// import {createMemoryHistory} from 'history';
+// const history = createMemoryHistory();
+
+
 const onMovieCardHover = jest.fn((args) => args);
 
 Enzyme.configure({
@@ -14,8 +18,8 @@ it(`Should get SmallMovieCard hovered`, () => {
   const component = shallow(
       <SmallMovieCard
         movie = {MOVIE}
-        onMovieClick = {() => {}}
-        onMovieCardHover = {onMovieCardHover}
+        onMovieCardHover = {() => {}}
+        history={``}
       />
   );
 

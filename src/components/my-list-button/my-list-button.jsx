@@ -3,9 +3,10 @@ import propTypes from 'prop-types';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from 'react-redux';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
-import history from '../../history.js';
+// import history from '../../history.js';
 import {AuthorizationStatus} from "../../utils/const.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
+import {withRouter} from 'react-router-dom';
 
 
 const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus}) => {
@@ -40,6 +41,12 @@ const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus}) => {
     );
   };
 
+  // if (!movie) {
+  //   return (
+  //     <div>loading!</div>
+  //   );
+  // }
+  // debugger;
   return (
     <React.Fragment>
       {movie.isFavorite ? buttonRemove() : buttonAdd()}
@@ -52,6 +59,7 @@ MyListButton.propTypes = {
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
   changeMovieFavoriteStatus: propTypes.func.isRequired,
   // loadMyMovies: propTypes.func.isRequired
+  // history: propTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -67,4 +75,5 @@ const mapDispatchToProps = (dispatch) => ({
   // }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);
+// export default connect(mapStateToProps, mapDispatchToProps)(MyListButton);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(MyListButton));

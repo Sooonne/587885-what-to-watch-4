@@ -4,7 +4,7 @@ import VideoPlayer from '../video-player/video-player.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {withRouter} from 'react-router-dom';
 
-class SmallMovieCard extends PureComponent {
+export class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 

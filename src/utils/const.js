@@ -1,3 +1,14 @@
+export const AppRoute = {
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE: `/movie`,
+  PLAYER: `/player`,
+  ROOT: `/`,
+};
+
+export const SEC_IN_MIN = 60;
+
+
 export const PAGE_NAMES = {
   INFO: `Overview`,
   DETAILS: `Details`,
@@ -73,9 +84,12 @@ export const getMovieTimeFormat = (movieTime) => {
   return `${hours}h ${minutes}m`;
 };
 
-// export const getElapsedTime = (duration, progress) => {
-//   const dHours = Math.floor(duration / 360);
-//   const pHours = Math.floor(progress / 360);
-//   const dMinutes = Math.floor(d);
-// };
+export const countLeftTimeformat = (progress, duration) => {
+  const leftTime = duration - progress;
+
+  const minutes = Math.trunc(leftTime / SEC_IN_MIN);
+  const seconds = Math.trunc(leftTime % SEC_IN_MIN);
+  const hours = Math.trunc(minutes / SEC_IN_MIN);
+  return `${hours}:${minutes}:${seconds}`;
+};
 

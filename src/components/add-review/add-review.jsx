@@ -4,7 +4,11 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from "react-redux";
 import {getMovies} from "../../reducer/data/selector.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
+import HeaderLogo from '../header-logo/header-logo.jsx';
+import HeaderUser from "../header-user/header-user.jsx";
+// import LinkWrapper from '../link-wrapper/link-wrapper.jsx';
+// import history from "../../history";
 
 const ReviewLength = {
   MIN: 50,
@@ -25,6 +29,7 @@ export class AddReview extends PureComponent {
     this._handleReviewTextChange = this._handleReviewTextChange.bind(this);
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleSubmitButtonClick = this._handleSubmitButtonClick.bind(this);
+    // this._handlePostForm = this._handlePostForm.bind(this);
   }
 
   _handleRatingChange(evt) {
@@ -41,18 +46,27 @@ export class AddReview extends PureComponent {
   }
 
   _handleSubmitButtonClick(evt) {
+    evt.preventDefault();
     const {movieCard: {id}} = this.props;
     const review = {
       ratingScore: this.state.ratingScore,
       text: this.state.text
     };
-    evt.preventDefault();
     DataOperation.sendReview(id, review);
-    // debugger;
     // onReviewButtonSubmit(id, review);
     // debugger;
-    history.back();
+    // history.goBack();
+    // history.push(`/movie/${id}`);
   }
+
+  // _handlePostForm(evt) {
+  //   const {movieCard: {id}} = this.props;
+  //   debugger;
+  //   const form = evt.target.parentNode.parentNode;
+  //   form.action = `https://4.react.pages.academy/wtw/comments/${id}`;
+  //   form.method = `POST`;
+  //   form.submit();
+  // }
 
   render() {
     const {movieCard} = this.props;
@@ -66,31 +80,26 @@ export class AddReview extends PureComponent {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header">
-            <div className="logo">
+            {/* <div className="logo">
               <a href="main.html" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
               </a>
-            </div>
+            </div> */}
+            <HeaderLogo/>
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel!
-                  </a>
+                  <Link to={`/movie/${movieCard.id}`} className="breadcrumbs__link">{movieCard.title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
                 </li>
               </ul>
             </nav>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <HeaderUser/>
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
@@ -138,7 +147,7 @@ export class AddReview extends PureComponent {
 
             <div className="add-review__text">
               <textarea className="add-review__textarea"
-                name="review-text" id="review-text"
+                name="comment" id="review-text"
                 placeholder="Review text"
                 onChange={this._handleReviewTextChange}
                 minLength={ReviewLength.MIN}
@@ -153,10 +162,13 @@ export class AddReview extends PureComponent {
                 {/* <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}>Post</button> */}
                 {/* <input className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled} name="Post" placeholder="Post"/> */}
                 {/* </LinkWrapper> */}
-                <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}>Post</button>
+                <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}
+                  //  onClick={this._handlePostForm}
+                >Post</button>
               </div>
-
             </div>
+
+
           </form>
         </div>
 
@@ -169,6 +181,7 @@ AddReview.propTypes = {
   // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   onReviewButtonSubmit: propTypes.any,
+  // history: propTypes.object.isRequired,
   // match: propTypes.object.isRequired,
 };
 
