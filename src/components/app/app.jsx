@@ -9,7 +9,6 @@ import {AuthorizationStatus, AppRoute} from "../../utils/const.js";
 import {connect} from 'react-redux';
 import MyList from "../my-list/my-list.jsx";
 import MovieRoute from "../movie-route/movie-route.jsx";
-// d
 
 class App extends PureComponent {
   constructor(props) {

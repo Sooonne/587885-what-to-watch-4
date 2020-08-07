@@ -8,15 +8,9 @@ import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {PAGE_NAMES} from "../../utils/const.js";
-// import {withRouter} from "react-router-dom";
-// import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
-// import {getMovies} from "../../reducer/data/selector.js";
 import MyListButton from "../my-list-button/my-list-button.jsx";
-// import { MovieRoute } from "../movie-route/movie-route.jsx";
-// import {Operation as DataOperation} from '../../reducer/data/data.js';
-
 
 export class MoviePage extends PureComponent {
   constructor(props) {
@@ -27,7 +21,6 @@ export class MoviePage extends PureComponent {
     };
 
     this.handleNavClick = this.handleNavClick.bind(this);
-    // this._handleReviewButtonClick = this._handleReviewButtonClick.bind(this);
   }
 
   handleNavClick(nav) {
@@ -35,12 +28,6 @@ export class MoviePage extends PureComponent {
       currentPage: nav
     });
   }
-
-  // _handleReviewButtonClick() {
-  //   const {movieCard: {id}} = this.props;
-  //   history.push(`/movie/${id}/review`);
-  // }
-
 
   _renderMoviePage(movieCard) {
 
@@ -59,7 +46,6 @@ export class MoviePage extends PureComponent {
     }
 
     if (currentPage === PAGE_NAMES.REVIEWS) {
-      // loadMovieReviewes(movieCard.id);
       return <MoviePageReviews
         id = {movieCard.id}
       />;
@@ -67,8 +53,6 @@ export class MoviePage extends PureComponent {
 
     return null;
   }
-
-  // componentDidMount()
 
   render() {
     const {movieCard, movies} = this.props;
@@ -103,7 +87,6 @@ export class MoviePage extends PureComponent {
                   <MyListButton
                     movie = {movieCard}
                   />
-                  {/* <a onClick={this._handleReviewButtonClick} className="btn movie-card__button">Add review</a> */}
                   <Link to={`./${movieCard.id}/review`} className="btn movie-card__button">Add review</Link>
                 </div>
               </div>
@@ -145,9 +128,6 @@ export class MoviePage extends PureComponent {
 MoviePage.propTypes = {
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  // reviewes: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
-
-
 };
 
 export default MoviePage;

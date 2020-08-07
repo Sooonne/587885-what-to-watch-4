@@ -1,6 +1,5 @@
 import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
-// import VideoPlayerFullScreen from "../video-player-full-screen/video-player-full-screen.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
@@ -74,16 +73,6 @@ export class Player extends PureComponent {
   _handleFullScreen() {
     this._videoRef.current.requestFullscreen();
   }
-
-  // _countLeftTimeformat(progress, duration) {
-  //   // const leftTime = this.state.duration - this.state.progress;
-  //   const leftTime = duration - progress;
-
-  //   const minutes = Math.trunc(leftTime / SEC_IN_MIN);
-  //   const seconds = Math.trunc(leftTime % SEC_IN_MIN);
-  //   const hours = Math.trunc(minutes / SEC_IN_MIN);
-  //   return `${hours}:${minutes}:${seconds}`;
-  // }
 
   _renderVideo(movie) {
     return (

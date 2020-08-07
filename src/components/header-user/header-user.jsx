@@ -4,13 +4,11 @@ import propTypes from "prop-types";
 import {AuthorizationStatus} from "../../utils/const.js";
 import {getAuthorizationStatus, getUserInfo} from "../../reducer/user/selector.js";
 import {connect} from "react-redux";
-// import HeaderLogo from "../header-logo/header-logo.jsx";
 
 const HeaderUser = ({isSignIn, userInfo}) => {
   const userLinkBlock = (isLogin) => {
     if (isLogin) {
       return (
-        /* здесь будет ссылка на my list*/
         <Link className="user-block" to="/mylist">
           <div className="user-block__avatar">
             <img src={userInfo.avatarUrl} alt={userInfo.name} width="63" height="63" />

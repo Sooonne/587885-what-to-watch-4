@@ -45,7 +45,6 @@ export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovi
 
 Main.propTypes = {
   movieCard: propTypes.object.isRequired,
-  // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   genres: propTypes.arrayOf(string),
   activeGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,
@@ -65,7 +64,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(genre) {
-    // dispatch(ActionCreator.getMoviesByGenre(genre));
     dispatch(ActionCreator.setActiveGenre(genre));
     dispatch(ActionCreator.resetShowedMovies());
   },
