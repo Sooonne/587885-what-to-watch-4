@@ -8,14 +8,9 @@ import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {PAGE_NAMES} from "../../utils/const.js";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
-import {getMovies} from "../../reducer/data/selector.js";
 import MyListButton from "../my-list-button/my-list-button.jsx";
-// import {Operation as DataOperation} from '../../reducer/data/data.js';
-
 
 export class MoviePage extends PureComponent {
   constructor(props) {
@@ -34,7 +29,6 @@ export class MoviePage extends PureComponent {
     });
   }
 
-
   _renderMoviePage(movieCard) {
 
     const {currentPage} = this.state;
@@ -52,8 +46,8 @@ export class MoviePage extends PureComponent {
     }
 
     if (currentPage === PAGE_NAMES.REVIEWS) {
-      // loadMovieReviewes(movieCard.id);
       return <MoviePageReviews
+        // comments = {}
         id = {movieCard.id}
       />;
     }
@@ -61,11 +55,8 @@ export class MoviePage extends PureComponent {
     return null;
   }
 
-  // componentDidMount()
-
   render() {
-    const {movies, match: {params: {id}}} = this.props;
-    const movieCard = movies.find((m) => m.id === +id);
+    const {movieCard, movies} = this.props;
 
     return (
       <React.Fragment>
@@ -97,7 +88,7 @@ export class MoviePage extends PureComponent {
                   <MyListButton
                     movie = {movieCard}
                   />
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  <Link to={`./${movieCard.id}/review`} className="btn movie-card__button">Add review</Link>
                 </div>
               </div>
             </div>
@@ -136,21 +127,10 @@ export class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  // reviewes: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW),
-  match: propTypes.object.isRequired,
-  loadMovieReviewes: propTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  // reviewes: getReviewes(state),
-});
+export default MoviePage;
 
-// const mapDispatchToProps = (dispatch) => ({
-//   loadMovieReviewes(movieId) {
-//     dispatch(DataOperation.loadMovieReviewes(movieId));
-//   }
-// });
 
-export default connect(mapStateToProps)(withRouter(MoviePage));

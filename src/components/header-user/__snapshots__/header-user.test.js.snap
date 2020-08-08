@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Main render correctly 1`] = `
+Array [
+  <a
+    className="user-block"
+    href="/mylist"
+    onClick={[Function]}
+  >
+    <div
+      className="user-block__avatar"
+    >
+      <img
+        alt="Yo"
+        height="63"
+        src="/pic1.jpg"
+        width="63"
+      />
+    </div>
+  </a>,
+  <div
+    className="user-block"
+  >
+    <button
+      className="user-block__link btn"
+      onClick={[Function]}
+    >
+      Logout
+    </button>
+  </div>,
+]
+`;

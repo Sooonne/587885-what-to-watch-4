@@ -1,11 +1,11 @@
 import React, {PureComponent, createRef} from "react";
 import propTypes from "prop-types";
-// import VideoPlayerFullScreen from "../video-player-full-screen/video-player-full-screen.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {getMovies} from "../../reducer/data/selector.js";
+import {countLeftTimeformat} from "../../utils/const.js";
 
 export class Player extends PureComponent {
   constructor(props) {
@@ -17,6 +17,7 @@ export class Player extends PureComponent {
       duration: 0,
       progress: 0,
       isPlaying: true,
+      leftTimeFormat: `00:00:00`,
     };
 
     this._handlePlayOrPause = this._handlePlayOrPause.bind(this);
@@ -51,7 +52,9 @@ export class Player extends PureComponent {
   componentDidUpdate() {
     const {isPlaying} = this.state;
     const video = this._videoRef.current;
-
+    this.setState({
+      leftTimeFormat: countLeftTimeformat(video.currentTime, video.duration)
+    });
     if (isPlaying) {
       video.play();
     } else {
@@ -87,6 +90,11 @@ export class Player extends PureComponent {
   render() {
     const {movies, match: {params: {id}}} = this.props;
     const movie = movies.find((m) => m.id === +id);
+    if (!movie) {
+      return (
+        <div>loading!</div>
+      );
+    }
 
     return (
       <React.Fragment>
@@ -100,7 +108,7 @@ export class Player extends PureComponent {
                 <progress className="player__progress" value={this.state.progress} max={this.state.duration}></progress>
                 <div className="player__toggler" style={{left: `${((this.state.progress / this.state.duration) * 100)}%`}}>Toggler</div>
               </div>
-              <div className="player__time-value">{this.state.duration}</div>
+              <div className="player__time-value">{this.state.leftTimeFormat}</div>
             </div>
 
             <div className="player__controls-row">

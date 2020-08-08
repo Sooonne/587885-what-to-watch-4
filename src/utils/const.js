@@ -1,3 +1,14 @@
+export const AppRoute = {
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  MOVIE: `/movie`,
+  PLAYER: `/player`,
+  ROOT: `/`,
+};
+
+export const SEC_IN_MIN = 60;
+
+
 export const PAGE_NAMES = {
   INFO: `Overview`,
   DETAILS: `Details`,
@@ -73,9 +84,32 @@ export const getMovieTimeFormat = (movieTime) => {
   return `${hours}h ${minutes}m`;
 };
 
-// export const getElapsedTime = (duration, progress) => {
-//   const dHours = Math.floor(duration / 360);
-//   const pHours = Math.floor(progress / 360);
-//   const dMinutes = Math.floor(d);
-// };
+export const countLeftTimeformat = (progress, duration) => {
+  const leftTime = duration - progress;
 
+  const minutes = Math.trunc(leftTime / SEC_IN_MIN);
+  const seconds = Math.trunc(leftTime % SEC_IN_MIN);
+  const hours = Math.trunc(minutes / SEC_IN_MIN);
+  return `${hours}:${minutes}:${seconds}`;
+};
+
+export const splitArray = (array, firstSlice, lastSlice) => {
+  return array.slice(firstSlice, lastSlice);
+};
+
+export const MAX_AMOUNT = 4;
+
+// eslint-disable-next-line no-unused-vars
+export function compareRandom(a, b) {
+  return Math.random() - 0.5;
+}
+
+export const getSimilarFilmsByGenre = (allMovies, currentMovie) => {
+  let filteredMovies = allMovies.filter((it) => {
+    return it.genre === currentMovie.genre && it !== currentMovie;
+  });
+  filteredMovies.sort(compareRandom);
+  filteredMovies.slice(0, MAX_AMOUNT);
+
+  return filteredMovies;
+};

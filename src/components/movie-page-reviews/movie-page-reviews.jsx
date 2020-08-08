@@ -1,52 +1,94 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import Review from "../review/review.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getReviewes} from "../../reducer/data/selector.js";
 import {connect} from "react-redux";
+import {splitArray} from "../../utils/const.js";
 
-const splitArray = (array, firstSlice, lastSlice) => {
-  return array.slice(firstSlice, lastSlice);
-};
+export class MoviePageReviews extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-const MoviePageReviews = ({id, loadMovieReviewes, comments}) => {
-  loadMovieReviewes(id);
-  return (
-    <React.Fragment>
-      <div className="movie-card__reviews movie-card__row">
-        <div className="movie-card__reviews-col">
+  componentDidMount() {
+    const {loadMovieReviewes, id} = this.props;
+    loadMovieReviewes(id);
+  }
 
-          {splitArray(comments, 0, Math.round(comments.length / 2)).map((comment, index) => {
-            return (
-              <Review
-                key = {comment.id + index}
-                review = {comment}
-              />
-            );
-          })}
+  render() {
+    const {comments} = this.props;
+    return (
+      <React.Fragment>
+        <div className="movie-card__reviews movie-card__row">
+          <div className="movie-card__reviews-col">
+
+            {splitArray(comments, 0, Math.round(comments.length / 2)).map((comment) => {
+              return (
+                <Review
+                  key = {comment.id}
+                  review = {comment}
+                />
+              );
+            })}
+          </div>
+
+          <div className="movie-card__reviews-col">
+
+            {splitArray(comments, Math.round(comments.length / 2 + 1), comments.length).map((comment) => {
+              return (
+                <Review
+                  key = {comment.id}
+                  review = {comment}
+                />
+              );
+            })}
+
+          </div>
         </div>
+      </React.Fragment>
+    );
+  }
+}
 
-        <div className="movie-card__reviews-col">
+// const MoviePageReviews = ({id, loadMovieReviewes, comments}) => {
+//   // loadMovieReviewes(id);
+//   return (
+//     <React.Fragment>
+//       <div className="movie-card__reviews movie-card__row">
+//         <div className="movie-card__reviews-col">
 
-          {splitArray(comments, Math.round(comments.length / 2 + 1), comments.length).map((comment, index) => {
-            return (
-              <Review
-                key = {comment.rating + index}
-                review = {comment}
-              />
-            );
-          })}
+//           {splitArray(comments, 0, Math.round(comments.length / 2)).map((comment) => {
+//             return (
+//               <Review
+//                 key = {comment.id}
+//                 review = {comment}
+//               />
+//             );
+//           })}
+//         </div>
 
-        </div>
-      </div>
-    </React.Fragment>
-  );
-};
+//         <div className="movie-card__reviews-col">
+
+//           {splitArray(comments, Math.round(comments.length / 2 + 1), comments.length).map((comment) => {
+//             return (
+//               <Review
+//                 key = {comment.id}
+//                 review = {comment}
+//               />
+//             );
+//           })}
+
+//         </div>
+//       </div>
+//     </React.Fragment>
+//   );
+// };
 
 MoviePageReviews.propTypes = {
   comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired,
-  id: propTypes.string.isRequired,
+  id: propTypes.number.isRequired,
   loadMovieReviewes: propTypes.func.isRequired
 };
 

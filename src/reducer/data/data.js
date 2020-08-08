@@ -44,7 +44,7 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_REVIEWES,
       payload: reviewes
-    }
+    };
   }
 };
 
@@ -86,6 +86,18 @@ const Operation = {
     .then(() => {
       dispatch(Operation.loadMovies());
       dispatch(Operation.loadMovieCard());
+    });
+  },
+
+  sendReview: (movieId, review) => (dispatch, getState, api) => {
+
+    return api.post(`/comments/${movieId}`, {
+      rating: review.ratingScore,
+      comment: review.text,
+    })
+    .then(() => {
+
+      dispatch(Operation.loadMovieReviewes(movieId));
     });
   },
 };

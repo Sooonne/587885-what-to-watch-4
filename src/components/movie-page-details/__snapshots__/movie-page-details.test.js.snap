@@ -52,7 +52,9 @@ Willem Dafoe
       </strong>
       <span
         className="movie-card__details-value"
-      />
+      >
+        0h 20m
+      </span>
     </p>
     <p
       className="movie-card__details-item"
@@ -65,7 +67,7 @@ Willem Dafoe
       <span
         className="movie-card__details-value"
       >
-        Drama
+        Documentary
       </span>
     </p>
     <p

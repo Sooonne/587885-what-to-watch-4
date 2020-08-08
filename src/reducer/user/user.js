@@ -68,25 +68,34 @@ const Operation = {
         dispatch(ActionCreator.getUserInfo(createUser(response.data)));
       })
       .catch((err) => {
-
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
         throw err;
       });
 
   },
 
   signIn: (authData) => (dispatch, getState, api) => {
+    // debugger;
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.checkErrorAuth(false));
+        dispatch(ActionCreator.getUserInfo(createUser(response.data)));
       })
       .catch(() => {
+        // dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
         dispatch(ActionCreator.checkErrorAuth(true));
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       });
   },
+
+  logout: () => (dispatch, getState, api) => {
+    return api.get(`/logout`)
+      .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)));
+  }
 };
 
 export {
