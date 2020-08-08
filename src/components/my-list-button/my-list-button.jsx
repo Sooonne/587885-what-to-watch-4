@@ -8,7 +8,7 @@ import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import {withRouter} from 'react-router-dom';
 
 
-const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus}) => {
+const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus, history}) => {
   const handleClick = (isFavorite) => {
     return (authStatus === AuthorizationStatus.AUTH) ? changeMovieFavoriteStatus(movie.id, isFavorite) : history.push(`/login`);
   };
@@ -48,6 +48,7 @@ MyListButton.propTypes = {
   authStatus: propTypes.string.isRequired,
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
   changeMovieFavoriteStatus: propTypes.func.isRequired,
+  history: propTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

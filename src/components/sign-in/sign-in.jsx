@@ -14,6 +14,7 @@ export class SignIn extends PureComponent {
     this.passRef = createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._renderErrorMessage = this._renderErrorMessage.bind(this);
 
   }
 
