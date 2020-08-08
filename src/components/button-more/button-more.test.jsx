@@ -1,14 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import GenreList from "./genres-list.jsx";
+import ButtonMore from "./button-more.jsx";
 
 
 it(`render Footer`, () => {
   const tree = renderer
-  .create(<GenreList
-    genres = {[`All genres`]}
-    activeGenre = {`All genres`}
-    onGenreClick = {() => {}}
+  .create(<ButtonMore
+    onButtonMoreClick = {() => {}}
   />)
   .toJSON();
 

@@ -90,13 +90,13 @@ const Operation = {
   },
 
   sendReview: (movieId, review) => (dispatch, getState, api) => {
-    debugger;
+
     return api.post(`/comments/${movieId}`, {
       rating: review.ratingScore,
       comment: review.text,
     })
     .then(() => {
-      // debugger;
+
       dispatch(Operation.loadMovieReviewes(movieId));
     });
   },

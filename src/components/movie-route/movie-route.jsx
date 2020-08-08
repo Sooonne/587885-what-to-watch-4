@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import propTypes from "prop-types";
-import {AddReview} from "../add-review/add-review.jsx";
+import AddReview from "../add-review/add-review.jsx";
 import {MoviePage} from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";

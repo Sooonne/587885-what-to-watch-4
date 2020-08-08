@@ -4,7 +4,7 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from "react-redux";
 import {getMovies} from "../../reducer/data/selector.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {withRouter, Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import HeaderLogo from '../header-logo/header-logo.jsx';
 import HeaderUser from "../header-user/header-user.jsx";
 // import LinkWrapper from '../link-wrapper/link-wrapper.jsx';
@@ -46,17 +46,21 @@ export class AddReview extends PureComponent {
   }
 
   _handleSubmitButtonClick(evt) {
+    // debugger;
     evt.preventDefault();
-    const {movieCard: {id}} = this.props;
+    const {movieCard: {id}, onReviewButtonSubmit, history} = this.props;
     const review = {
       ratingScore: this.state.ratingScore,
       text: this.state.text
     };
-    DataOperation.sendReview(id, review);
-    // onReviewButtonSubmit(id, review);
+    // DataOperation.sendReview(id, review);
+    onReviewButtonSubmit(id, review)
+    .then(() => {
+      history.push(`/movie/${id}`);
+    });
     // debugger;
     // history.goBack();
-    // history.push(`/movie/${id}`);
+
   }
 
   // _handlePostForm(evt) {
@@ -181,7 +185,7 @@ AddReview.propTypes = {
   // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   onReviewButtonSubmit: propTypes.any,
-  // history: propTypes.object.isRequired,
+  history: propTypes.object.isRequired,
   // match: propTypes.object.isRequired,
 };
 
@@ -189,12 +193,12 @@ const mapStateToProps = (state) => ({
   movies: getMovies(state)
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   onReviewButtonSubmit(id, review) {
-//     dispatch(DataOperation.sendReview(id, review));
-//   }
-// });
+const mapDispatchToProps = (dispatch) => ({
+  onReviewButtonSubmit(id, review) {
+    return dispatch(DataOperation.sendReview(id, review));
+  }
+});
 
-export default connect(mapStateToProps)(withRouter(AddReview));
-// export default connect(mapStateToProps, mapDispatchToProps)(AddReview);
+// export default connect(mapStateToProps)(withRouter(AddReview));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddReview));
 

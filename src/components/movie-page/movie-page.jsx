@@ -47,6 +47,7 @@ export class MoviePage extends PureComponent {
 
     if (currentPage === PAGE_NAMES.REVIEWS) {
       return <MoviePageReviews
+        // comments = {}
         id = {movieCard.id}
       />;
     }
