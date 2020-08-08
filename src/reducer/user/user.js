@@ -91,6 +91,11 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       });
   },
+
+  logout: () => (dispatch, getState, api) => {
+    return api.get(`/logout`)
+      .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)));
+  }
 };
 
 export {

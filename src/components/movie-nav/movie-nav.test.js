@@ -5,6 +5,8 @@ import MovieNav from "./movie-nav.jsx";
 it(`Should MovieNav render correctly`, () => {
   const tree = renderer
     .create(<MovieNav
+      currentActivePage = {`Overview`}
+      onNavClick = {()=> {}}
     />)
     .toJSON();
 

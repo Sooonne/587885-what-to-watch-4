@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should MovieLikeThis render correctly 1`] = `
+<section
+  className="catalog catalog--like-this"
+>
+  <h2
+    className="catalog__title"
+  >
+    More like this
+  </h2>
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog_movies-card"
+      onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          height="175"
+          poster="/img/the-grand-budapest-hotel-poster.jpg"
+          src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+        >
+          Bohemian Rhapsody
+        </a>
+      </h3>
+    </article>
+  </div>
+</section>
+`;

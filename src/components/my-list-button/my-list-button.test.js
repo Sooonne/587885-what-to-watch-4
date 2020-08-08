@@ -1,13 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-import {PROMO_FILM, MOVIES} from "../../data-for-tests/data-for-tests";
+import {PROMO_FILM, MOVIES, MOVIE} from "../../data-for-tests/data-for-tests";
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from "react-redux";
 import configureStore from 'redux-mock-store';
 import NameSpace from '../../reducer/name-space.js';
 import {AuthorizationStatus} from "../../utils/const.js";
 
+import {createMemoryHistory} from 'history';
+import MyListButton from "./my-list-button";
+
+const history = createMemoryHistory();
 const mockStore = configureStore([]);
 
 const store = mockStore({
@@ -32,16 +35,16 @@ const store = mockStore({
   }
 });
 
-it(`Should Main render correctly`, () => {
+it(`Should MyListButton render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router>
-            <Main
-              genres = {[`All genres`]}
-              activeGenre = {`All genres`}
-              onGenreClick = {() => {}}
-              onButtonMoreClick = {() => {}}
+            <MyListButton
+              authStatus = {AuthorizationStatus.AUTH}
+              movie = {MOVIE}
+              changeMovieFavoriteStatus = {() => {}}
+              history = {history}
             />
           </Router>
         </Provider>,

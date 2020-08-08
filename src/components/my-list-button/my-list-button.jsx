@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from 'react-redux';
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {AuthorizationStatus} from "../../utils/const.js";
@@ -46,7 +45,7 @@ const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus, history}) =
 
 MyListButton.propTypes = {
   authStatus: propTypes.string.isRequired,
-  movie: DEFAULT_PROPTYPES.MOVIE_CARD,
+  movie: propTypes.any,
   changeMovieFavoriteStatus: propTypes.func.isRequired,
   history: propTypes.object.isRequired
 };

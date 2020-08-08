@@ -11,6 +11,9 @@ export const PROMO_FILM = {
   ratingScore: 8.9,
   ratingCount: 240,
   id: 9,
+  runTime: 20,
+  isFavorite: false,
+  bgColor: `#FFFFFF`,
   src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   srcFull: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };

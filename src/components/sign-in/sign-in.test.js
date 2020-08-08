@@ -5,24 +5,16 @@ import SignIn from "./sign-in.jsx";
 import NameSpace from '../../reducer/name-space';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {BrowserRouter as Router} from 'react-router-dom';
 
 
 const mockStore = configureStore([]);
 
 it(`Should SignIn render correctly`, () => {
   const store = mockStore({
-    // [NameSpace.DATA]: {
-    //   movieCard,
-    //   movies,
-    //   isLoading: false,
-    //   isLoadError: false,
-    // },
-    // [NameSpace.APP_STATE]: {
-    //   activeGenre: `All genres`,
-    //   currentMovie: movie,
-    // },
     [NameSpace.USER]: {
       authorizationStatus: `AUTH`,
+      isErrorAuth: false,
       userInfo: {
         id: 1,
         email: `sadas@gmail.com`,
@@ -34,10 +26,12 @@ it(`Should SignIn render correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <SignIn
-            onFormSubmit = {() => {}}
-            isErrorAuth = {false}
-          />
+          <Router>
+            <SignIn
+              onFormSubmit = {() => {}}
+              isErrorAuth = {false}
+            />
+          </Router>
         </Provider>
         ,
         {

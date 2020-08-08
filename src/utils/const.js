@@ -93,3 +93,23 @@ export const countLeftTimeformat = (progress, duration) => {
   return `${hours}:${minutes}:${seconds}`;
 };
 
+export const splitArray = (array, firstSlice, lastSlice) => {
+  return array.slice(firstSlice, lastSlice);
+};
+
+export const MAX_AMOUNT = 4;
+
+// eslint-disable-next-line no-unused-vars
+export function compareRandom(a, b) {
+  return Math.random() - 0.5;
+}
+
+export const getSimilarFilmsByGenre = (allMovies, currentMovie) => {
+  let filteredMovies = allMovies.filter((it) => {
+    return it.genre === currentMovie.genre && it !== currentMovie;
+  });
+  filteredMovies.sort(compareRandom);
+  filteredMovies.slice(0, MAX_AMOUNT);
+
+  return filteredMovies;
+};

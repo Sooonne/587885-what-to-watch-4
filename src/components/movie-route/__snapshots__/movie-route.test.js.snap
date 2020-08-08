@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should MoviePage render correctly 1`] = `
+exports[`Should MOvieRoute render correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -12,7 +12,7 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Bohemian Rhapsody"
+          alt="Fantastic Beasts: The Crimes of Grindelwald"
           src="/img/bg-the-grand-budapest-hotel.jpg"
         />
       </div>
@@ -85,7 +85,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Bohemian Rhapsody
+            Fantastic Beasts: The Crimes of Grindelwald
           </h2>
           <p
             className="movie-card__meta"
@@ -93,7 +93,7 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Documentary
+              Drama
             </span>
             <span
               className="movie-card__year"
@@ -106,7 +106,7 @@ Array [
           >
             <a
               className="btn btn--play movie-card__button"
-              href="/player/2"
+              href="/player/1"
               onClick={[Function]}
             >
               <svg
@@ -142,7 +142,7 @@ Array [
             </button>
             <a
               className="btn movie-card__button"
-              href="/2/review"
+              href="/1/review"
               onClick={[Function]}
             >
               Add review
@@ -161,7 +161,7 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Bohemian Rhapsody"
+            alt="Fantastic Beasts: The Crimes of Grindelwald"
             height="327"
             src="/img/the-grand-budapest-hotel-poster.jpg"
             width="218"
@@ -272,35 +272,7 @@ Array [
       </h2>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog_movies-card"
-          onClick={[Function]}
-          onMouseOut={[Function]}
-          onMouseOver={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              height="175"
-              poster="/img/the-grand-budapest-hotel-poster.jpg"
-              src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
     </section>
     <footer
       className="page-footer"

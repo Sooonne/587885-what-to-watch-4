@@ -5,12 +5,9 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getReviewes} from "../../reducer/data/selector.js";
 import {connect} from "react-redux";
+import {splitArray} from "../../utils/const.js";
 
-const splitArray = (array, firstSlice, lastSlice) => {
-  return array.slice(firstSlice, lastSlice);
-};
-
-class MoviePageReviews extends PureComponent {
+export class MoviePageReviews extends PureComponent {
   constructor(props) {
     super(props);
   }

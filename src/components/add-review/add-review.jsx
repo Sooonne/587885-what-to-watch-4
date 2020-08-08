@@ -7,10 +7,8 @@ import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Link, withRouter} from "react-router-dom";
 import HeaderLogo from '../header-logo/header-logo.jsx';
 import HeaderUser from "../header-user/header-user.jsx";
-// import LinkWrapper from '../link-wrapper/link-wrapper.jsx';
-// import history from "../../history";
 
-const ReviewLength = {
+export const ReviewLength = {
   MIN: 50,
   MAX: 400,
 };
@@ -29,7 +27,6 @@ export class AddReview extends PureComponent {
     this._handleReviewTextChange = this._handleReviewTextChange.bind(this);
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleSubmitButtonClick = this._handleSubmitButtonClick.bind(this);
-    // this._handlePostForm = this._handlePostForm.bind(this);
   }
 
   _handleRatingChange(evt) {
@@ -46,31 +43,17 @@ export class AddReview extends PureComponent {
   }
 
   _handleSubmitButtonClick(evt) {
-    // debugger;
     evt.preventDefault();
     const {movieCard: {id}, onReviewButtonSubmit, history} = this.props;
     const review = {
       ratingScore: this.state.ratingScore,
       text: this.state.text
     };
-    // DataOperation.sendReview(id, review);
     onReviewButtonSubmit(id, review)
     .then(() => {
       history.push(`/movie/${id}`);
     });
-    // debugger;
-    // history.goBack();
-
   }
-
-  // _handlePostForm(evt) {
-  //   const {movieCard: {id}} = this.props;
-  //   debugger;
-  //   const form = evt.target.parentNode.parentNode;
-  //   form.action = `https://4.react.pages.academy/wtw/comments/${id}`;
-  //   form.method = `POST`;
-  //   form.submit();
-  // }
 
   render() {
     const {movieCard} = this.props;
@@ -84,13 +67,6 @@ export class AddReview extends PureComponent {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header">
-            {/* <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div> */}
             <HeaderLogo/>
 
             <nav className="breadcrumbs">
@@ -126,26 +102,11 @@ export class AddReview extends PureComponent {
                         type="radio"
                         name="rating"
                         value={rating}
-                        // disabled={isRadioDisabled}
                       />
                       <label className="rating__label" htmlFor={`star-${rating}`}>Rating {rating}</label>
                     </React.Fragment>
                   );
                 })}
-                {/* <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
-                <label className="rating__label" htmlFor="star-1">Rating 1</label>
-
-                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
-                <label className="rating__label" htmlFor="star-2">Rating 2</label>
-
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" checked />
-                <label className="rating__label" htmlFor="star-3">Rating 3</label>
-
-                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" />
-                <label className="rating__label" htmlFor="star-4">Rating 4</label>
-
-                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" />
-                <label className="rating__label" htmlFor="star-5">Rating 5</label> */}
               </div>
             </div>
 
@@ -159,15 +120,7 @@ export class AddReview extends PureComponent {
 
 
               <div className="add-review__submit">
-                {/* <LinkWrapper
-                  isDisabled = {this.state.isButtonDisabled}
-                  link = {`/movie/${movieCard.id}`}
-                > */}
-                {/* <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}>Post</button> */}
-                {/* <input className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled} name="Post" placeholder="Post"/> */}
-                {/* </LinkWrapper> */}
                 <button className="add-review__btn" type="submit" disabled={this.state.isButtonDisabled}
-                  //  onClick={this._handlePostForm}
                 >Post</button>
               </div>
             </div>
@@ -182,11 +135,9 @@ export class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  // movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   onReviewButtonSubmit: propTypes.any,
   history: propTypes.object.isRequired,
-  // match: propTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

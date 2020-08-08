@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import AddReview from "./add-review.jsx";
+import configureStore from "redux-mock-store";
 import {PROMO_FILM, MOVIES} from "../../data-for-tests/data-for-tests";
-import {BrowserRouter as Router} from 'react-router-dom';
 import {Provider} from "react-redux";
-import configureStore from 'redux-mock-store';
-import NameSpace from '../../reducer/name-space.js';
+import NameSpace from '../../reducer/name-space';
 import {AuthorizationStatus} from "../../utils/const.js";
+import {BrowserRouter as Router} from 'react-router-dom';
 
 const mockStore = configureStore([]);
 
@@ -32,20 +32,18 @@ const store = mockStore({
   }
 });
 
-it(`Should Main render correctly`, () => {
+it(`Render App`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router>
-            <Main
-              genres = {[`All genres`]}
-              activeGenre = {`All genres`}
-              onGenreClick = {() => {}}
-              onButtonMoreClick = {() => {}}
+            <AddReview
+              movieCard = {PROMO_FILM}
+              onReviewButtonSubmit = {() => {}}
             />
           </Router>
-        </Provider>,
-        {
+        </Provider>
+        , {
           createNodeMock: () => {
             return {};
           }

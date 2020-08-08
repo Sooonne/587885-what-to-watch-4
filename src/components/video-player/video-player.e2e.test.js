@@ -12,16 +12,21 @@ const video = {
   poster: `img/the-grand-budapest-hotel-poster.jpg`,
 };
 
+window.HTMLMediaElement.prototype.load = () => { /* do nothing */ };
+window.HTMLMediaElement.prototype.play = () => { /* do nothing */ };
+
 describe(`VideoPlayer e2e test`, () => {
   it(`Should start and pause work correctly`, () => {
-    // const isPlaying = false;
     const videoPlayer = mount(
         <VideoPlayer
           isPlaying = {false}
           src = {video.src}
           poster = {video.poster}
-        />
-    );
+        />, {
+          createNodeMock: () => {
+            return {};
+          }
+        });
 
     expect(videoPlayer.props().isPlaying).toEqual(false);
     videoPlayer.setProps({isPlaying: true});

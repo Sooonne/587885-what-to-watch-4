@@ -9,7 +9,7 @@ import {getUserInfo} from "../../reducer/user/selector.js";
 import {getMoviesFromMyList} from "../../reducer/data/selector.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 
-class MyList extends PureComponent {
+export class MyList extends PureComponent {
   constructor(props) {
     super(props);
   }
