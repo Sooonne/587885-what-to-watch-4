@@ -32,17 +32,25 @@ export class SignIn extends PureComponent {
 
   _handleSubmit(evt) {
     const {onFormSubmit} = this.props;
-
+    // debugger;
     const submitData = {
       login: this.loginRef.current.value,
       password: this.passRef.current.value,
     };
     evt.preventDefault();
     onFormSubmit(submitData);
+    // if (!isErrorAuth) {
+    //   return <Redirect to="/"/>;
+    // }
   }
 
   render() {
     const {isErrorAuth} = this.props;
+    if (!this.props) {
+      return (
+        <div>loading!</div>
+      );
+    }
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -101,7 +109,7 @@ SignIn.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  isErrorAuth: getErrorAuth(state)
+  isErrorAuth: getErrorAuth(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

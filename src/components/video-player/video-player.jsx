@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import propTypes from 'prop-types';
 
-export default class VideoPlayer extends PureComponent {
+class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -32,6 +32,19 @@ export default class VideoPlayer extends PureComponent {
     }
   }
 
+  componentDidUpdate() {
+    const video = this._videoRef.current;
+
+
+    if (video) {
+      if (this.props.isPlaying) {
+        video.play();
+      } else {
+        video.load();
+      }
+    }
+  }
+
   render() {
     const {src, poster} = this.props;
     return (
@@ -47,19 +60,6 @@ export default class VideoPlayer extends PureComponent {
       </React.Fragment>
     );
   }
-
-  componentDidUpdate() {
-    const video = this._videoRef.current;
-
-
-    if (video) {
-      if (this.props.isPlaying) {
-        video.play();
-      } else {
-        video.load();
-      }
-    }
-  }
 }
 
 
@@ -68,3 +68,5 @@ VideoPlayer.propTypes = {
   src: propTypes.string.isRequired,
   poster: propTypes.string.isRequired,
 };
+
+export default VideoPlayer;

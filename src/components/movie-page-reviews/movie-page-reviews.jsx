@@ -52,40 +52,6 @@ export class MoviePageReviews extends PureComponent {
   }
 }
 
-// const MoviePageReviews = ({id, loadMovieReviewes, comments}) => {
-//   // loadMovieReviewes(id);
-//   return (
-//     <React.Fragment>
-//       <div className="movie-card__reviews movie-card__row">
-//         <div className="movie-card__reviews-col">
-
-//           {splitArray(comments, 0, Math.round(comments.length / 2)).map((comment) => {
-//             return (
-//               <Review
-//                 key = {comment.id}
-//                 review = {comment}
-//               />
-//             );
-//           })}
-//         </div>
-
-//         <div className="movie-card__reviews-col">
-
-//           {splitArray(comments, Math.round(comments.length / 2 + 1), comments.length).map((comment) => {
-//             return (
-//               <Review
-//                 key = {comment.id}
-//                 review = {comment}
-//               />
-//             );
-//           })}
-
-//         </div>
-//       </div>
-//     </React.Fragment>
-//   );
-// };
-
 MoviePageReviews.propTypes = {
   comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired,
   id: propTypes.number.isRequired,

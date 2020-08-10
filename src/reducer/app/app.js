@@ -1,9 +1,5 @@
 import {extend, ALL_GENRES} from "../../utils/const.js";
-// import {MOVIES} from "../../mocks/movies.js";
-// import {MOVIE_CARD} from "../../mocks/movie-card.js";
-// import {COMMENTS} from "../../mocks/comments.js";
 import {SHOWED_MOVIES_AMOUNT} from "../../utils/const.js";
-// import {getAllGenres, SHOWED_MOVIES_AMOUNT} from "../../utils/const.js";
 
 
 export const initialState = {

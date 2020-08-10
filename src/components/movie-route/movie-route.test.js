@@ -11,7 +11,7 @@ import {AuthorizationStatus} from "../../utils/const.js";
 import {createMemoryHistory} from 'history';
 
 const history = createMemoryHistory();
-const location = {pathname: `/movie/1`};
+const location = {pathname: `/films/1`};
 
 const mockStore = configureStore([]);
 

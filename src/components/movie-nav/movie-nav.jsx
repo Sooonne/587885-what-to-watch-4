@@ -1,8 +1,8 @@
 import React from "react";
 import propTypes from "prop-types";
-import {PAGE_NAMES} from "../../utils/const.js";
+import {PageName} from "../../utils/const.js";
 
-const navs = Object.values(PAGE_NAMES);
+const navs = Object.values(PageName);
 
 const MovieNav = ({currentActivePage, onNavClick}) => {
   return (

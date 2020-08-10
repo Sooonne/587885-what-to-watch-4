@@ -1,15 +1,21 @@
 export const AppRoute = {
   LOGIN: `/login`,
   MY_LIST: `/mylist`,
-  MOVIE: `/movie`,
+  MOVIE: `/films`,
   PLAYER: `/player`,
   ROOT: `/`,
+};
+
+export const SubmitStatus = {
+  DEFAULT: `Default`,
+  SUCCESS: `Success`,
+  ERROR: `Error`,
 };
 
 export const SEC_IN_MIN = 60;
 
 
-export const PAGE_NAMES = {
+export const PageName = {
   INFO: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`
@@ -23,7 +29,8 @@ export const PAGES = {
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
+  NO_AUTH: `NO_AUTH`,
+  NOT_CHECKED: `NOT_CHECKED`
 };
 
 export const ALL_GENRES = `All genres`;
@@ -63,19 +70,50 @@ export const addPrefixtoUrl = (url, prefix) => {
 
 export const SHOWED_MOVIES_AMOUNT = 8;
 
+const RatingLevel = {
+  BAD: 0,
+  NORMAL: 3,
+  GOOD: 5,
+  VERY_GOOD: 8,
+  AWESOME: 10,
+};
 
 export const getRating = (rating) => {
-  if (rating >= 0 && rating < 3) {
+  if (rating >= RatingLevel.BAD && rating < RatingLevel.NORMAL) {
     return `Bad`;
-  } else if (rating >= 3 && rating < 5) {
+  } else if (rating >= RatingLevel.NORMAL && rating < RatingLevel.GOOD) {
     return `Normal`;
-  } else if (rating >= 5 && rating < 8) {
+  } else if (rating >= RatingLevel.GOOD && rating < RatingLevel.VERY_GOOD) {
     return `Good`;
-  } else if (rating >= 8 && rating < 10) {
+  } else if (rating >= RatingLevel.VERY_GOOD && rating < RatingLevel.AWESOME) {
     return `Very good`;
   } else {
     return `Awesome`;
   }
+};
+
+const Months = {
+  0: `January`,
+  1: `February`,
+  2: `March`,
+  3: `April`,
+  4: `May`,
+  5: `June`,
+  6: `July`,
+  7: `August`,
+  8: `September`,
+  9: `October`,
+  10: `November`,
+  11: `December`
+};
+
+export const getReviewDateFormat = (data) => {
+  // debugger;
+  const date = new Date(data);
+  const month = Months[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  return `${month} ${day}, ${year}`;
 };
 
 export const getMovieTimeFormat = (movieTime) => {
@@ -109,7 +147,7 @@ export const getSimilarFilmsByGenre = (allMovies, currentMovie) => {
     return it.genre === currentMovie.genre && it !== currentMovie;
   });
   filteredMovies.sort(compareRandom);
-  filteredMovies.slice(0, MAX_AMOUNT);
 
-  return filteredMovies;
+
+  return filteredMovies.slice(0, MAX_AMOUNT);
 };

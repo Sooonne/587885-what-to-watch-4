@@ -2,11 +2,12 @@ import React, {PureComponent} from 'react';
 import propTypes from 'prop-types';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from "react-redux";
-import {getMovies} from "../../reducer/data/selector.js";
+import {getMovies, getSubmitStatus} from "../../reducer/data/selector.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {Link, withRouter} from "react-router-dom";
 import HeaderLogo from '../header-logo/header-logo.jsx';
 import HeaderUser from "../header-user/header-user.jsx";
+import {SubmitStatus} from "../../utils/const.js";
 
 export const ReviewLength = {
   MIN: 50,
@@ -27,6 +28,7 @@ export class AddReview extends PureComponent {
     this._handleReviewTextChange = this._handleReviewTextChange.bind(this);
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleSubmitButtonClick = this._handleSubmitButtonClick.bind(this);
+    this._showError = this._showError.bind(this);
   }
 
   _handleRatingChange(evt) {
@@ -43,16 +45,30 @@ export class AddReview extends PureComponent {
   }
 
   _handleSubmitButtonClick(evt) {
+    // this.setState({
+    //   isButtonDisabled: true,
+    // });
     evt.preventDefault();
-    const {movieCard: {id}, onReviewButtonSubmit, history} = this.props;
+    const {movieCard: {id}, onReviewButtonSubmit} = this.props;
     const review = {
       ratingScore: this.state.ratingScore,
       text: this.state.text
     };
-    onReviewButtonSubmit(id, review)
-    .then(() => {
-      history.push(`/movie/${id}`);
-    });
+    onReviewButtonSubmit(id, review);
+    // .then(() => {
+    //   history.push(`/films/${id}`);
+    // });
+  }
+
+  _showError() {
+    const {history, submitStatus, movieCard: {id}} = this.props;
+    if (submitStatus === SubmitStatus.SUCCESS) {
+      return history.push(`/films/${id}`);
+    }
+    if (submitStatus === SubmitStatus.ERROR) {
+      return <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>;
+    }
+    return null;
   }
 
   render() {
@@ -72,7 +88,7 @@ export class AddReview extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/movie/${movieCard.id}`} className="breadcrumbs__link">{movieCard.title}</Link>
+                  <Link to={`/films/${movieCard.id}`} className="breadcrumbs__link">{movieCard.title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -125,7 +141,7 @@ export class AddReview extends PureComponent {
               </div>
             </div>
 
-
+            {this._showError()}
           </form>
         </div>
 
@@ -136,12 +152,14 @@ export class AddReview extends PureComponent {
 
 AddReview.propTypes = {
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
-  onReviewButtonSubmit: propTypes.any,
+  onReviewButtonSubmit: propTypes.func.isRequired,
   history: propTypes.object.isRequired,
+  submitStatus: propTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state)
+  movies: getMovies(state),
+  submitStatus: getSubmitStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -150,6 +168,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-// export default connect(mapStateToProps)(withRouter(AddReview));
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddReview));
 

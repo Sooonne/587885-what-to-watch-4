@@ -7,7 +7,7 @@ import MoviePageInfo from "../movie-page-info/movie-page-info.jsx";
 import MoviePageDetails from "../movie-page-details/movie-page-details.jsx";
 import MoviePageReviews from "../movie-page-reviews/movie-page-reviews.jsx";
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
-import {PAGE_NAMES} from "../../utils/const.js";
+import {PageName} from "../../utils/const.js";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
 import MyListButton from "../my-list-button/my-list-button.jsx";
@@ -17,7 +17,7 @@ export class MoviePage extends PureComponent {
     super(props);
 
     this.state = {
-      currentPage: PAGE_NAMES.INFO
+      currentPage: PageName.INFO
     };
 
     this.handleNavClick = this.handleNavClick.bind(this);
@@ -33,21 +33,20 @@ export class MoviePage extends PureComponent {
 
     const {currentPage} = this.state;
 
-    if (currentPage === PAGE_NAMES.INFO) {
+    if (currentPage === PageName.INFO) {
       return <MoviePageInfo
         movieCard = {movieCard}
       />;
     }
 
-    if (currentPage === PAGE_NAMES.DETAILS) {
+    if (currentPage === PageName.DETAILS) {
       return <MoviePageDetails
         movieCard = {movieCard}
       />;
     }
 
-    if (currentPage === PAGE_NAMES.REVIEWS) {
+    if (currentPage === PageName.REVIEWS) {
       return <MoviePageReviews
-        // comments = {}
         id = {movieCard.id}
       />;
     }

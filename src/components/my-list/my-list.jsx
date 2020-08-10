@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import {getUserInfo} from "../../reducer/user/selector.js";
 import {getMoviesFromMyList} from "../../reducer/data/selector.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getAuthorizationStatus} from "../../reducer/user/selector.js";
+import {AuthorizationStatus} from "../../utils/const.js";
 
 export class MyList extends PureComponent {
   constructor(props) {
@@ -20,7 +22,13 @@ export class MyList extends PureComponent {
   }
 
   render() {
-    const {favoriteMovies, userInfo} = this.props;
+    // const {authStatus} = this.props;
+    const {favoriteMovies, userInfo, authStatus} = this.props;
+    if (authStatus === AuthorizationStatus.NOT_CHECKED) {
+      return (
+        <div>loading!</div>
+      );
+    }
     return (
       <React.Fragment>
 
@@ -69,12 +77,14 @@ MyList.propTypes = {
     avatarUrl: propTypes.string.isRequired,
   }),
   favoriteMovies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-  loadMyMovies: propTypes.func.isRequired
+  loadMyMovies: propTypes.func.isRequired,
+  authStatus: propTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   userInfo: getUserInfo(state),
   favoriteMovies: getMoviesFromMyList(state),
+  authStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

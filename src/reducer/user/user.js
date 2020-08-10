@@ -26,10 +26,10 @@ const ActionCreator = {
     };
   },
 
-  checkErrorAuth: (error) => {
+  checkErrorAuth: (isErrorAuth) => {
     return {
       type: ActionType.CHECK_ERROR_AUTH,
-      payload: error,
+      payload: isErrorAuth,
     };
   },
 
@@ -66,16 +66,17 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserInfo(createUser(response.data)));
+        // dispatch(ActionCreator.checkErrorAuth(false));
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-        throw err;
+        // throw err;
+        // dispatch(ActionCreator.checkErrorAuth(true));
       });
 
   },
 
   signIn: (authData) => (dispatch, getState, api) => {
-    // debugger;
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
@@ -86,7 +87,6 @@ const Operation = {
         dispatch(ActionCreator.getUserInfo(createUser(response.data)));
       })
       .catch(() => {
-        // dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
         dispatch(ActionCreator.checkErrorAuth(true));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       });

@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import propTypes from "prop-types";
 import VideoPlayer from '../video-player/video-player.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 
 export class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -17,12 +17,11 @@ export class SmallMovieCard extends PureComponent {
 
   _handleMovieClick() {
     const {movie, history} = this.props;
-    history.push(`/movie/${movie.id}`);
+    history.push(`/films/${movie.id}`);
   }
 
 
   render() {
-    const onMovieCardHover = this.props.onMovieCardHover;
     const {movie} = this.props;
     return (
       <article className="small-movie-card catalog_movies-card"
@@ -30,7 +29,6 @@ export class SmallMovieCard extends PureComponent {
           this.setState({
             isPlaying: true,
           });
-          onMovieCardHover(movie);
         }}
         onMouseOut={() => {
           this.setState({
@@ -47,7 +45,7 @@ export class SmallMovieCard extends PureComponent {
           />
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{movie.title}</a>
+          <Link to={`/films/${movie.id}`} className="small-movie-card__link">{movie.title}</Link>
         </h3>
       </article>
     );
@@ -56,7 +54,6 @@ export class SmallMovieCard extends PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
-  onMovieCardHover: propTypes.func.isRequired,
   history: propTypes.object.isRequired
 };
 

@@ -100,7 +100,7 @@ export class Player extends PureComponent {
       <React.Fragment>
         <div className="player">
           {this._renderVideo(movie)}
-          <Link className="player__exit" to={`/movie/${movie.id}`}>Exit</Link>
+          <Link className="player__exit" to={`/films/${movie.id}`}>Exit</Link>
 
           <div className="player__controls">
             <div className="player__controls-row">
