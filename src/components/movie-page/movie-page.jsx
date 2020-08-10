@@ -47,7 +47,7 @@ export class MoviePage extends PureComponent {
 
     if (currentPage === PageName.REVIEWS) {
       return <MoviePageReviews
-        id = {movieCard.id}
+        movieCard = {movieCard}
       />;
     }
 

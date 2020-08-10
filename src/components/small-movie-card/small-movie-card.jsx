@@ -8,9 +8,9 @@ export class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isPlaying: false,
-    };
+    // this.state = {
+    //   isPlaying: false,
+    // };
 
     this._handleMovieClick = this._handleMovieClick.bind(this);
   }
@@ -22,24 +22,20 @@ export class SmallMovieCard extends PureComponent {
 
 
   render() {
-    const {movie} = this.props;
+    const {movie, isPlaying, onCardOver, onCardOut} = this.props;
     return (
       <article className="small-movie-card catalog_movies-card"
         onMouseOver={() => {
-          this.setState({
-            isPlaying: true,
-          });
+          onCardOver();
         }}
         onMouseOut={() => {
-          this.setState({
-            isPlaying: false,
-          });
+          onCardOut();
         }}
         onClick = {this._handleMovieClick}
       >
         <div className="small-movie-card__image">
           <VideoPlayer
-            isPlaying={this.state.isPlaying}
+            isPlaying={isPlaying}
             src={movie.src}
             poster={movie.poster}
           />
@@ -54,7 +50,10 @@ export class SmallMovieCard extends PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
-  history: propTypes.object.isRequired
+  history: propTypes.object.isRequired,
+  isPlaying: propTypes.bool.isRequired,
+  onCardOver: propTypes.func.isRequired,
+  onCardOut: propTypes.func.isRequired
 };
 
 

@@ -13,7 +13,7 @@ export class MoviePageReviews extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadMovieReviewes, id} = this.props;
+    const {loadMovieReviewes, movieCard: {id}} = this.props;
     loadMovieReviewes(id);
   }
 
@@ -54,7 +54,8 @@ export class MoviePageReviews extends PureComponent {
 
 MoviePageReviews.propTypes = {
   comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired,
-  id: propTypes.number.isRequired,
+  // id: propTypes.number.isRequired,
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   loadMovieReviewes: propTypes.func.isRequired
 };
 

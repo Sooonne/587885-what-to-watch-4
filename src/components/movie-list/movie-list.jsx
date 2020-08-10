@@ -2,6 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import SmallMovieCard from '../small-movie-card/small-movie-card.jsx';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
+import withPreview from '../../hocs/with-preview.jsx';
+
+const SmallMovieCardWrapped = withPreview(SmallMovieCard);
 
 export const MovieList = ({movies}) => {
   return (
@@ -9,7 +12,7 @@ export const MovieList = ({movies}) => {
       <div className="catalog__movies-list">
         {movies.map((movie) => {
           return (
-            <SmallMovieCard
+            <SmallMovieCardWrapped
               key = {movie.id}
               movie = {movie}
             />
