@@ -5,6 +5,7 @@ import {getErrorAuth} from "../../reducer/user/selector.js";
 import Footer from "../footer/footer.jsx";
 import {Link} from "react-router-dom";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
+import Loading from "../loading/loading.jsx";
 
 export class SignIn extends PureComponent {
   constructor(props) {
@@ -48,7 +49,7 @@ export class SignIn extends PureComponent {
     const {isErrorAuth} = this.props;
     if (!this.props) {
       return (
-        <div>loading!</div>
+        <Loading/>
       );
     }
     return (

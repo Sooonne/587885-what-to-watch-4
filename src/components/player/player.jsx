@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {getMovies} from "../../reducer/data/selector.js";
 import {countLeftTimeformat} from "../../utils/const.js";
+import Loading from "../loading/loading.jsx";
 
 export class Player extends PureComponent {
   constructor(props) {
@@ -92,7 +93,7 @@ export class Player extends PureComponent {
     const movie = movies.find((m) => m.id === +id);
     if (!movie) {
       return (
-        <div>loading!</div>
+        <Loading/>
       );
     }
 

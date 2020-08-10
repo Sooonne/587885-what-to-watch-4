@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {connect} from "react-redux";
 import {getMovies, getSubmitStatus} from "../../reducer/data/selector.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
+import {Operation as DataOperation, ActionCreator} from "../../reducer/data/data.js";
 import {Link, withRouter} from "react-router-dom";
 import HeaderLogo from '../header-logo/header-logo.jsx';
 import HeaderUser from "../header-user/header-user.jsx";
@@ -28,7 +28,7 @@ export class AddReview extends PureComponent {
     this._handleReviewTextChange = this._handleReviewTextChange.bind(this);
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleSubmitButtonClick = this._handleSubmitButtonClick.bind(this);
-    this._showError = this._showError.bind(this);
+    // this._showError = this._showError.bind(this);
   }
 
   _handleRatingChange(evt) {
@@ -48,31 +48,54 @@ export class AddReview extends PureComponent {
     // this.setState({
     //   isButtonDisabled: true,
     // });
+    // debugger;
     evt.preventDefault();
-    const {movieCard: {id}, onReviewButtonSubmit} = this.props;
+    // const {movieCard: {id}, onReviewButtonSubmit, submitStatus, onClearSubmitState, history} = this.props;
+    const {movieCard: {id}, onReviewButtonSubmit, onClearSubmitState} = this.props;
+    onClearSubmitState();
     const review = {
       ratingScore: this.state.ratingScore,
       text: this.state.text
     };
     onReviewButtonSubmit(id, review);
     // .then(() => {
-    //   history.push(`/films/${id}`);
+    //   debugger;
+    //   if (submitStatus === SubmitStatus.SUCCESS) {
+    //     // debugger;
+    //     // onClearSubmitState();
+    //     return history.push(`/films/${id}`);
+    //   }
+    //   // if (submitStatus === SubmitStatus.ERROR) {
+    //   //   return <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>;
+    //   // }
+    //   return null;
     // });
   }
 
-  _showError() {
-    const {history, submitStatus, movieCard: {id}} = this.props;
-    if (submitStatus === SubmitStatus.SUCCESS) {
-      return history.push(`/films/${id}`);
-    }
-    if (submitStatus === SubmitStatus.ERROR) {
-      return <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>;
-    }
-    return null;
+  // componentDidMount() {
+  //   const {onClearSubmitState} = this.props;
+  //   onClearSubmitState();
+  // }
+
+
+  componentWillUnmount() {
+    const {onClearSubmitState} = this.props;
+    onClearSubmitState();
   }
 
+  // _showError() {
+  //   const {history, submitStatus, movieCard: {id}} = this.props;
+  //   if (submitStatus === SubmitStatus.SUCCESS) {
+  //     return history.push(`/films/${id}`);
+  //   }
+  //   if (submitStatus === SubmitStatus.ERROR) {
+  //     return <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>;
+  //   }
+  //   return null;
+  // }
+
   render() {
-    const {movieCard} = this.props;
+    const {movieCard, submitStatus} = this.props;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -141,7 +164,8 @@ export class AddReview extends PureComponent {
               </div>
             </div>
 
-            {this._showError()}
+            {/* {this._showError()} */}
+            {submitStatus === SubmitStatus.ERROR && <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>}
           </form>
         </div>
 
@@ -154,7 +178,8 @@ AddReview.propTypes = {
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   onReviewButtonSubmit: propTypes.func.isRequired,
   history: propTypes.object.isRequired,
-  submitStatus: propTypes.string.isRequired
+  submitStatus: propTypes.string.isRequired,
+  onClearSubmitState: propTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -165,6 +190,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onReviewButtonSubmit(id, review) {
     return dispatch(DataOperation.sendReview(id, review));
+  },
+
+  onClearSubmitState() {
+    return dispatch(ActionCreator.clearSubmitStatus());
   }
 });
 

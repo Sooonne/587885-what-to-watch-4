@@ -10,6 +10,7 @@ import {getMoviesFromMyList} from "../../reducer/data/selector.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import {AuthorizationStatus} from "../../utils/const.js";
+import Loading from "../loading/loading.jsx";
 
 export class MyList extends PureComponent {
   constructor(props) {
@@ -26,7 +27,7 @@ export class MyList extends PureComponent {
     const {favoriteMovies, userInfo, authStatus} = this.props;
     if (authStatus === AuthorizationStatus.NOT_CHECKED) {
       return (
-        <div>loading!</div>
+        <Loading/>
       );
     }
     return (

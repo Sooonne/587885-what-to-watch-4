@@ -1,5 +1,5 @@
-// import React from "react";
-import React, {PureComponent} from "react";
+import React from "react";
+// import React, {PureComponent} from "react";
 import propTypes from "prop-types";
 import Main from "../main/main.jsx";
 import Player from "../player/player.jsx";
@@ -10,70 +10,76 @@ import {AuthorizationStatus, AppRoute} from "../../utils/const.js";
 import {connect} from 'react-redux';
 import MyList from "../my-list/my-list.jsx";
 import MovieRoute from "../movie-route/movie-route.jsx";
+import Loading from "../loading/loading.jsx";
 
 
-// const App = (authStatus) => {
-//   // debugger;
-//   return (
-//     <Router>
-//       <Switch>
-//         <Route exact path={AppRoute.ROOT}>
-//           <Main
-//           />
-//         </Route>
-//         <Route path={`${AppRoute.MOVIE}/:id`}>
-//           <MovieRoute
-//           />
-//         </Route>
-//         <Route exact path={`${AppRoute.PLAYER}/:id`}>
-//           <Player/>
-//         </Route>
-//         <Route exact path={AppRoute.LOGIN}>
-//           {(authStatus === AuthorizationStatus.AUTH) ? <Redirect to="/" /> : <SignIn/>}
-//         </Route>
-//         <Route exact path={AppRoute.MY_LIST}>
-//           {/* {(authStatus === AuthorizationStatus.AUTH) ? <MyList/> : <Redirect to={AppRoute.LOGIN} /> } */}
-//           {(authStatus === AuthorizationStatus.NO_AUTH) ? <Redirect to={AppRoute.LOGIN}/> : <MyList/>}
-//           {/* <MyList/> */}
-//         </Route>
-//       </Switch>
-//     </Router>
-//   );
-
-// };
-
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {authStatus} = this.props;
+const App = ({authStatus}) => {
+  // debugger;
+  if (authStatus === AuthorizationStatus.NOT_CHECKED) {
     return (
-      <Router>
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            <Main
-            />
-          </Route>
-          <Route path={`${AppRoute.MOVIE}/:id`}>
-            <MovieRoute
-            />
-          </Route>
-          <Route exact path={`${AppRoute.PLAYER}/:id`}>
-            <Player/>
-          </Route>
-          <Route exact path={AppRoute.LOGIN}>
-            {(authStatus === AuthorizationStatus.AUTH) ? <Redirect to="/" /> : <SignIn/>}
-          </Route>
-          <Route exact path={AppRoute.MY_LIST}>
-            {(authStatus === AuthorizationStatus.AUTH) ? <MyList/> : <Redirect to={AppRoute.LOGIN} /> }
-          </Route>
-        </Switch>
-      </Router>
+      <Loading/>
     );
   }
-}
+  return (
+    <Router>
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <Main
+          />
+        </Route>
+        <Route path={`${AppRoute.MOVIE}/:id`}>
+          <MovieRoute
+          />
+        </Route>
+        <Route exact path={`${AppRoute.PLAYER}/:id`}>
+          <Player/>
+        </Route>
+        <Route exact path={AppRoute.LOGIN}>
+          {(authStatus === AuthorizationStatus.AUTH) ? <Redirect to="/" /> : <SignIn/>}
+        </Route>
+        <Route exact path={AppRoute.MY_LIST}>
+          {/* {(authStatus === AuthorizationStatus.AUTH) ? <MyList/> : <Redirect to={AppRoute.LOGIN} /> } */}
+          {(authStatus === AuthorizationStatus.NO_AUTH) ? <Redirect to={AppRoute.LOGIN}/> : <MyList/>}
+          {/* <MyList/> */}
+        </Route>
+      </Switch>
+    </Router>
+  );
+
+};
+
+// class App extends PureComponent {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   render() {
+//     const {authStatus} = this.props;
+//     return (
+//       <Router>
+//         <Switch>
+//           <Route exact path={AppRoute.ROOT}>
+//             <Main
+//             />
+//           </Route>
+//           <Route path={`${AppRoute.MOVIE}/:id`}>
+//             <MovieRoute
+//             />
+//           </Route>
+//           <Route exact path={`${AppRoute.PLAYER}/:id`}>
+//             <Player/>
+//           </Route>
+//           <Route exact path={AppRoute.LOGIN}>
+//             {(authStatus === AuthorizationStatus.AUTH) ? <Redirect to="/" /> : <SignIn/>}
+//           </Route>
+//           <Route exact path={AppRoute.MY_LIST}>
+//             {(authStatus === AuthorizationStatus.AUTH) ? <MyList/> : <Redirect to={AppRoute.LOGIN} /> }
+//           </Route>
+//         </Switch>
+//       </Router>
+//     );
+//   }
+// }
 
 App.propTypes = {
   authStatus: propTypes.string.isRequired,

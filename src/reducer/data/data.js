@@ -1,5 +1,6 @@
 import {extend, SubmitStatus} from "../../utils/const.js";
 import {createMovie} from "../../adapter/adapter-movie";
+// import history from "../../history.js";
 
 const initialState = {
   movies: [],
@@ -14,7 +15,8 @@ const ActionType = {
   LOAD_MOVIE_CARD: `LOAD_MOVIE_CARD`,
   LOAD_REVIEWES: `LOAD_REVIEWES`,
   LOAD_FAVORITE_MOVIES: `LOAD_FAVORITE_MOVIES`,
-  GET_SUBMIT_STATUS: `GET_SUBMIT_STATUS`
+  GET_SUBMIT_STATUS: `GET_SUBMIT_STATUS`,
+  CLEAR_SUBMIT_STATUS: `CLEAR_SUNMIT_STATUS`,
 };
 
 const ActionCreator = {
@@ -53,6 +55,12 @@ const ActionCreator = {
       type: ActionType.GET_SUBMIT_STATUS,
       payload: submitStatus
     };
+  },
+  clearSubmitStatus: () => {
+    return {
+      type: ActionType.CLEAR_SUBMIT_STATUS,
+      payload: SubmitStatus.DEFAULT
+    };
   }
 };
 
@@ -62,6 +70,7 @@ const Operation = {
       .then((response) => {
         const movies = response.data.map((movie) => createMovie(movie));
         dispatch(ActionCreator.loadMovies(movies));
+
       });
   },
 
@@ -107,11 +116,13 @@ const Operation = {
 
       dispatch(Operation.loadMovieReviewes(movieId));
       dispatch(ActionCreator.getSubmitStatus(SubmitStatus.SUCCESS));
+      // history.goBack();
     })
-    .then(() => {
-      dispatch(ActionCreator.getSubmitStatus(SubmitStatus.DEFAULT));
-    })
+    // .then(() => {
+    //   dispatch(ActionCreator.getSubmitStatus(SubmitStatus.DEFAULT));
+    // })
     .catch(() => {
+      // debugger;
       dispatch(ActionCreator.getSubmitStatus(SubmitStatus.ERROR));
     });
   },
@@ -138,6 +149,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_SUBMIT_STATUS:
       return extend(state, {
         submitStatus: action.payload
+      });
+    case ActionType.CLEAR_SUBMIT_STATUS:
+      return extend(state, {
+        submitStatus: action.payload,
       });
   }
 

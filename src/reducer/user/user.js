@@ -2,7 +2,7 @@ import {extend, AuthorizationStatus} from "../../utils/const.js";
 import {createUser} from "../../adapter/adapter-user.js";
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.NOT_CHECKED,
   isErrorAuth: false,
   userInfo: {
     id: 0,
