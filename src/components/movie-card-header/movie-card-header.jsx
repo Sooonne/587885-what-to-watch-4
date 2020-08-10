@@ -1,8 +1,8 @@
 import React from "react";
-import propTypes from "prop-types";
 import Header from "../header/header.jsx";
 import {Link} from "react-router-dom";
 import MyListButton from "../my-list-button/my-list-button.jsx";
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const MovieCardHeader = ({movieCard}) => {
   return (
@@ -49,7 +49,7 @@ const MovieCardHeader = ({movieCard}) => {
 };
 
 MovieCardHeader.propTypes = {
-  movieCard: propTypes.object.isRequired,
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
 };
 
 export default MovieCardHeader;

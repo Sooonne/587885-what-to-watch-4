@@ -5,7 +5,7 @@ import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {AuthorizationStatus} from "../../utils/const.js";
 import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import {withRouter} from 'react-router-dom';
-
+import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 
 const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus, history}) => {
   const handleClick = (isFavorite) => {
@@ -45,9 +45,9 @@ const MyListButton = ({authStatus, movie, changeMovieFavoriteStatus, history}) =
 
 MyListButton.propTypes = {
   authStatus: propTypes.string.isRequired,
-  movie: propTypes.any,
+  movie: DEFAULT_PROPTYPES.MOVIE_CARD,
   changeMovieFavoriteStatus: propTypes.func.isRequired,
-  history: propTypes.object.isRequired
+  history: propTypes.shape({push: propTypes.func.isRequired})
 };
 
 const mapStateToProps = (state) => ({

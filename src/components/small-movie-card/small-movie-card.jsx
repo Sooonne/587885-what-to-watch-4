@@ -46,7 +46,7 @@ export class SmallMovieCard extends PureComponent {
 
 SmallMovieCard.propTypes = {
   movie: DEFAULT_PROPTYPES.MOVIE_CARD,
-  history: propTypes.object.isRequired,
+  history: propTypes.shape({push: propTypes.func.isRequired}),
   isPlaying: propTypes.bool.isRequired,
   onCardOver: propTypes.func.isRequired,
   onCardOut: propTypes.func.isRequired

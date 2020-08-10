@@ -40,8 +40,11 @@ it(`Render App`, () => {
           <Router>
             <AddReview
               movieCard = {PROMO_FILM}
-              onReviewButtonSubmit = {() => {}}
               submitStatus = {`Default`}
+              onSubmitClick = {() => {}}
+              onRatingChange = {() => {}}
+              onReviewChange = {() => {}}
+              isSubmitDisabled = {true}
             />
           </Router>
         </Provider>

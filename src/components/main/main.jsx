@@ -44,7 +44,7 @@ export const Main = ({movieCard, genres, activeGenre, onGenreClick, filteredMovi
 };
 
 Main.propTypes = {
-  movieCard: propTypes.object.isRequired,
+  movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   genres: propTypes.arrayOf(string),
   activeGenre: propTypes.string.isRequired,
   onGenreClick: propTypes.func.isRequired,

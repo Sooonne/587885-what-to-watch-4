@@ -23,10 +23,6 @@ const App = ({authStatus}) => {
   return (
     <Router>
       <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          <Main
-          />
-        </Route>
         <Route path={`${AppRoute.MOVIE}/:id`}>
           <MovieRoute
           />
@@ -39,6 +35,10 @@ const App = ({authStatus}) => {
         </Route>
         <Route exact path={AppRoute.MY_LIST}>
           {(authStatus === AuthorizationStatus.NO_AUTH) ? <Redirect to={AppRoute.LOGIN}/> : <MyList/>}
+        </Route>
+        <Route path={AppRoute.ROOT}>
+          <Main
+          />
         </Route>
       </Switch>
     </Router>

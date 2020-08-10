@@ -150,3 +150,11 @@ export const getSimilarFilmsByGenre = (allMovies, currentMovie) => {
 
   return filteredMovies.slice(0, MAX_AMOUNT);
 };
+
+export const ReviewLength = {
+  MIN: 50,
+  MAX: 400,
+};
+
+export const RATINGS_MAX_STARS = 5;
+

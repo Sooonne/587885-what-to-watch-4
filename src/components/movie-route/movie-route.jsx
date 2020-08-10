@@ -10,6 +10,9 @@ import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import {getSubmitStatus} from "../../reducer/data/selector.js";
 import {AuthorizationStatus, AppRoute, SubmitStatus} from "../../utils/const.js";
 import Loading from "../loading/loading.jsx";
+import withReview from "../../hocs/with-review.jsx";
+
+const AddReviewWrapper = withReview(AddReview);
 
 export const MovieRoute = ({movies, match: {params: {id}}, location: {pathname}, authStatus, submitStatus}) => {
   const movieCard = movies.find((m) => m.id === +id);
@@ -28,7 +31,7 @@ export const MovieRoute = ({movies, match: {params: {id}}, location: {pathname},
 
 
       return (
-        <AddReview
+        <AddReviewWrapper
           movieCard = {movieCard}
         />
       );
@@ -57,7 +60,6 @@ MovieRoute.propTypes = {
       id: propTypes.string.isRequired
     })
   }),
-  history: propTypes.object.isRequired,
   submitStatus: propTypes.string.isRequired,
 };
 

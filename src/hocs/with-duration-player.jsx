@@ -3,10 +3,8 @@ import propTypes from "prop-types";
 import DEFAULT_PROPTYPES from "../prop-type-units/prop-types-units.js";
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-// import {Link} from "react-router-dom";
 import {getMovies} from "../reducer/data/selector.js";
 import {countLeftTimeformat} from "../utils/const.js";
-// import Loading from "../loading/loading.jsx";
 
 const withDurationPlayer = (Component) => {
   class WithDurationPlayer extends PureComponent {
@@ -114,7 +112,11 @@ const withDurationPlayer = (Component) => {
 
   WithDurationPlayer.propTypes = {
     movies: propTypes.arrayOf(DEFAULT_PROPTYPES.MOVIE_CARD),
-    match: propTypes.object.isRequired,
+    match: propTypes.shape({
+      params: propTypes.shape({
+        id: propTypes.string.isRequired
+      })
+    }),
   };
 
   const mapStateToProps = (state) => ({
