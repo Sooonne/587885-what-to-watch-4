@@ -44,7 +44,7 @@ describe(`Player`, () => {
           <Provider store={store}>
             <Router>
               <Player
-                match = {{params: {id: 1}}}
+                match = {{params: {id: `1`}}}
                 movies = {MOVIES}
                 duration = {100}
                 progress = {10}
