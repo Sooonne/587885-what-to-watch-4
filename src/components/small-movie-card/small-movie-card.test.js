@@ -4,20 +4,26 @@ import {SmallMovieCard} from "./small-movie-card.jsx";
 import {MOVIE} from "../../data-for-tests/data-for-tests";
 
 import {createMemoryHistory} from 'history';
+import {BrowserRouter} from "react-router-dom";
 const history = createMemoryHistory();
 
 it(`Should SmallMovieCard render correctly`, () => {
   const tree = renderer
-    .create(<SmallMovieCard
-      movie = {MOVIE}
-      onMovieCardHover = {() => {}}
-      history={history}
-    />,
-    {
-      createNodeMock: () => {
-        return {};
-      }
-    })
+    .create(
+        <BrowserRouter>
+          <SmallMovieCard
+            movie = {MOVIE}
+            onCardOver = {() => {}}
+            onCardOut = {() => {}}
+            history={history}
+            isPlaying = {false}
+          />
+        </BrowserRouter>,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        })
     .toJSON();
 
   expect(tree).toMatchSnapshot();

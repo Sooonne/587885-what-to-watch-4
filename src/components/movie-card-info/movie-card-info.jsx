@@ -9,7 +9,6 @@ import {PageName} from "../../utils/const.js";
 
 const MovieCardInfo = ({activeItem, movieCard, onItemClick}) => {
   const renderScreen = (currentActiveItem) => {
-    // const {currentPage} = this.state;
 
     if (currentActiveItem === PageName.INFO) {
       return <MoviePageInfo

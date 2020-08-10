@@ -18,13 +18,14 @@ it(`Should get SmallMovieCard hovered`, () => {
   const component = shallow(
       <SmallMovieCard
         movie = {MOVIE}
-        onMovieCardHover = {onMovieCardHover}
+        onCardOver = {onMovieCardHover}
+        onCardOut = {() => {}}
         history={history}
+        isPlaying = {false}
       />
   );
 
   const card = component.find(`.small-movie-card`);
   card.simulate(`mouseover`);
   expect(onMovieCardHover).toHaveBeenCalledTimes(1);
-  expect(onMovieCardHover).toHaveBeenCalledWith(MOVIE);
 });

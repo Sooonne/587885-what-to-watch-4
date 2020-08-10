@@ -8,10 +8,6 @@ export class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   isPlaying: false,
-    // };
-
     this._handleMovieClick = this._handleMovieClick.bind(this);
   }
 

@@ -54,7 +54,6 @@ export class MoviePageReviews extends PureComponent {
 
 MoviePageReviews.propTypes = {
   comments: propTypes.arrayOf(DEFAULT_PROPTYPES.REVIEW).isRequired,
-  // id: propTypes.number.isRequired,
   movieCard: DEFAULT_PROPTYPES.MOVIE_CARD,
   loadMovieReviewes: propTypes.func.isRequired
 };

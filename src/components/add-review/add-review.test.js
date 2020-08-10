@@ -13,7 +13,8 @@ const mockStore = configureStore([]);
 const store = mockStore({
   [NameSpace.DATA]: {
     movieCard: PROMO_FILM,
-    movies: MOVIES
+    movies: MOVIES,
+    submitStatus: `Default`,
   },
   [NameSpace.APP]: {
     filteredMovies: MOVIES,
@@ -40,6 +41,7 @@ it(`Render App`, () => {
             <AddReview
               movieCard = {PROMO_FILM}
               onReviewButtonSubmit = {() => {}}
+              submitStatus = {`Default`}
             />
           </Router>
         </Provider>

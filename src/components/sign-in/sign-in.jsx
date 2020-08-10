@@ -33,16 +33,12 @@ export class SignIn extends PureComponent {
 
   _handleSubmit(evt) {
     const {onFormSubmit} = this.props;
-    // debugger;
     const submitData = {
       login: this.loginRef.current.value,
       password: this.passRef.current.value,
     };
     evt.preventDefault();
     onFormSubmit(submitData);
-    // if (!isErrorAuth) {
-    //   return <Redirect to="/"/>;
-    // }
   }
 
   render() {

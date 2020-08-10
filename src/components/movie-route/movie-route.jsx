@@ -10,7 +10,6 @@ import {getAuthorizationStatus} from "../../reducer/user/selector.js";
 import {getSubmitStatus} from "../../reducer/data/selector.js";
 import {AuthorizationStatus, AppRoute, SubmitStatus} from "../../utils/const.js";
 import Loading from "../loading/loading.jsx";
-// import {SignIn} from "../sign-in/sign-in.jsx";
 
 export const MovieRoute = ({movies, match: {params: {id}}, location: {pathname}, authStatus, submitStatus}) => {
   const movieCard = movies.find((m) => m.id === +id);
@@ -22,8 +21,6 @@ export const MovieRoute = ({movies, match: {params: {id}}, location: {pathname},
   if (pathname.endsWith(`/review`)) {
     if (authStatus === AuthorizationStatus.AUTH) {
       if (submitStatus === SubmitStatus.SUCCESS) {
-        // debugger;
-        // onClearSubmitState();
         return (
           <Redirect to={`${AppRoute.MOVIE}/${id}`}/>
         );
@@ -38,8 +35,6 @@ export const MovieRoute = ({movies, match: {params: {id}}, location: {pathname},
     }
     return (
       <Redirect to={AppRoute.LOGIN}/>
-      // <SignIn/>
-      // history.push(`${AppRoute.LOGIN}`)
     );
 
   }
@@ -50,43 +45,6 @@ export const MovieRoute = ({movies, match: {params: {id}}, location: {pathname},
     />
   );
 };
-
-// export class MovieRoute extends PureComponent {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     const {movies, match: {params: {id}}, location: {pathname}, authStatus} = this.props;
-//     const movieCard = movies.find((m) => m.id === +id);
-//     if (!movieCard) {
-//       return (
-//         <div>loading!</div>
-//       );
-//     }
-//     if (pathname.endsWith(`/review`)) {
-//       if (authStatus === AuthorizationStatus.AUTH) {
-//         return (
-//           <AddReview
-//             movieCard = {movieCard}
-//           />
-//         );
-//       }
-//       return (
-//         // <SignIn/>
-//         // history.push(`${AppRoute.LOGIN}`)
-//         <Redirect to={AppRoute.LOGIN}></Redirect>
-//       );
-
-//     }
-//     return (
-//       <MoviePage
-//         movieCard = {movieCard}
-//         movies = {movies}
-//       />
-//     );
-//   }
-// }
 
 MovieRoute.propTypes = {
   authStatus: propTypes.string.isRequired,

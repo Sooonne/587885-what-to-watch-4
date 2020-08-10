@@ -3,7 +3,6 @@ import DEFAULT_PROPTYPES from "../../prop-type-units/prop-types-units.js";
 import {getReviewDateFormat} from "../../utils/const.js";
 
 const Review = ({review}) => {
-  // debugger;
   return (
     <React.Fragment>
       <div className="review">

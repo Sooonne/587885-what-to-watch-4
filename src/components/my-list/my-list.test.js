@@ -47,6 +47,7 @@ it(`render MyList`, () => {
               avatarUrl: `/pic1.jpg`
             }}
             favoriteMovies = {MOVIES}
+            authStatus={AuthorizationStatus.AUTH}
 
           />
         </Router>

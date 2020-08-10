@@ -75,6 +75,8 @@ it(`Reducer without additional parameters should return initial state`, () => {
     favoriteMovies: [],
     movieCard: {},
     reviewes: [],
+    submitStatus: `Default`,
+
   });
 });
 

@@ -1,6 +1,5 @@
 import {extend, SubmitStatus} from "../../utils/const.js";
 import {createMovie} from "../../adapter/adapter-movie";
-// import history from "../../history.js";
 
 const initialState = {
   movies: [],
@@ -116,13 +115,8 @@ const Operation = {
 
       dispatch(Operation.loadMovieReviewes(movieId));
       dispatch(ActionCreator.getSubmitStatus(SubmitStatus.SUCCESS));
-      // history.goBack();
     })
-    // .then(() => {
-    //   dispatch(ActionCreator.getSubmitStatus(SubmitStatus.DEFAULT));
-    // })
     .catch(() => {
-      // debugger;
       dispatch(ActionCreator.getSubmitStatus(SubmitStatus.ERROR));
     });
   },

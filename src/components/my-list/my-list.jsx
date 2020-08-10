@@ -23,7 +23,6 @@ export class MyList extends PureComponent {
   }
 
   render() {
-    // const {authStatus} = this.props;
     const {favoriteMovies, userInfo, authStatus} = this.props;
     if (authStatus === AuthorizationStatus.NOT_CHECKED) {
       return (

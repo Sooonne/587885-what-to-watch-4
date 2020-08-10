@@ -108,7 +108,6 @@ const Months = {
 };
 
 export const getReviewDateFormat = (data) => {
-  // debugger;
   const date = new Date(data);
   const month = Months[date.getMonth()];
   const day = date.getDate();

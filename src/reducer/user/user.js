@@ -66,12 +66,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserInfo(createUser(response.data)));
-        // dispatch(ActionCreator.checkErrorAuth(false));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
-        // throw err;
-        // dispatch(ActionCreator.checkErrorAuth(true));
       });
 
   },

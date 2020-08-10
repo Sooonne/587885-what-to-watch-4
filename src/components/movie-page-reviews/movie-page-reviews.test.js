@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {REVIEWS} from "../../data-for-tests/data-for-tests.js";
+import {REVIEWS, MOVIE} from "../../data-for-tests/data-for-tests.js";
 import {MoviePageReviews} from "./movie-page-reviews.jsx";
 
 it(`Should MoviePageReviews render correctly`, () => {
@@ -8,7 +8,7 @@ it(`Should MoviePageReviews render correctly`, () => {
     .create(
         <MoviePageReviews
           comments = {REVIEWS}
-          id = {1}
+          movieCard = {MOVIE}
           loadMovieReviewes = {() => {}}
         />
         ,

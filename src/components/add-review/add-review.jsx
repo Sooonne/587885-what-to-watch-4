@@ -28,7 +28,6 @@ export class AddReview extends PureComponent {
     this._handleReviewTextChange = this._handleReviewTextChange.bind(this);
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleSubmitButtonClick = this._handleSubmitButtonClick.bind(this);
-    // this._showError = this._showError.bind(this);
   }
 
   _handleRatingChange(evt) {
@@ -45,12 +44,7 @@ export class AddReview extends PureComponent {
   }
 
   _handleSubmitButtonClick(evt) {
-    // this.setState({
-    //   isButtonDisabled: true,
-    // });
-    // debugger;
     evt.preventDefault();
-    // const {movieCard: {id}, onReviewButtonSubmit, submitStatus, onClearSubmitState, history} = this.props;
     const {movieCard: {id}, onReviewButtonSubmit, onClearSubmitState} = this.props;
     onClearSubmitState();
     const review = {
@@ -58,41 +52,12 @@ export class AddReview extends PureComponent {
       text: this.state.text
     };
     onReviewButtonSubmit(id, review);
-    // .then(() => {
-    //   debugger;
-    //   if (submitStatus === SubmitStatus.SUCCESS) {
-    //     // debugger;
-    //     // onClearSubmitState();
-    //     return history.push(`/films/${id}`);
-    //   }
-    //   // if (submitStatus === SubmitStatus.ERROR) {
-    //   //   return <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>;
-    //   // }
-    //   return null;
-    // });
   }
-
-  // componentDidMount() {
-  //   const {onClearSubmitState} = this.props;
-  //   onClearSubmitState();
-  // }
-
 
   componentWillUnmount() {
     const {onClearSubmitState} = this.props;
     onClearSubmitState();
   }
-
-  // _showError() {
-  //   const {history, submitStatus, movieCard: {id}} = this.props;
-  //   if (submitStatus === SubmitStatus.SUCCESS) {
-  //     return history.push(`/films/${id}`);
-  //   }
-  //   if (submitStatus === SubmitStatus.ERROR) {
-  //     return <p style={{color: `tomato`, textAlign: `center`}}>We have some problems! Try to post yout review later.</p>;
-  //   }
-  //   return null;
-  // }
 
   render() {
     const {movieCard, submitStatus} = this.props;
