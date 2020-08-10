@@ -10,7 +10,9 @@ import {connect} from 'react-redux';
 import MyList from "../my-list/my-list.jsx";
 import MovieRoute from "../movie-route/movie-route.jsx";
 import Loading from "../loading/loading.jsx";
+import withDurationPlayer from "../../hocs/with-duration-player.jsx";
 
+const PlayerWrapped = withDurationPlayer(Player);
 
 const App = ({authStatus}) => {
   if (authStatus === AuthorizationStatus.NOT_CHECKED) {
@@ -30,7 +32,7 @@ const App = ({authStatus}) => {
           />
         </Route>
         <Route exact path={`${AppRoute.PLAYER}/:id`}>
-          <Player/>
+          <PlayerWrapped/>
         </Route>
         <Route exact path={AppRoute.LOGIN}>
           {(authStatus === AuthorizationStatus.AUTH) ? <Redirect to="/" /> : <SignIn/>}

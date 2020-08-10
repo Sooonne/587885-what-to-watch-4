@@ -46,6 +46,12 @@ describe(`Player`, () => {
               <Player
                 match = {{params: {id: 1}}}
                 movies = {MOVIES}
+                duration = {100}
+                progress = {10}
+                leftTimeFormat = {`0:10:10`}
+                renderPLayOrPause = {() => {}}
+                renderFullScreen = {() => {}}
+                renderVideo = {() => {}}
               />
             </Router>
           </Provider>, {
