@@ -59,7 +59,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="/movie/9"
+              href="/films/9"
               onClick={[Function]}
             >
               Star Wars

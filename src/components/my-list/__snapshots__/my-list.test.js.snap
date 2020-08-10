@@ -86,7 +86,8 @@ exports[`render MyList 1`] = `
         >
           <a
             className="small-movie-card__link"
-            href="movie-page.html"
+            href="/films/1"
+            onClick={[Function]}
           >
             Fantastic Beasts: The Crimes of Grindelwald
           </a>
@@ -113,7 +114,8 @@ exports[`render MyList 1`] = `
         >
           <a
             className="small-movie-card__link"
-            href="movie-page.html"
+            href="/films/2"
+            onClick={[Function]}
           >
             Bohemian Rhapsody
           </a>

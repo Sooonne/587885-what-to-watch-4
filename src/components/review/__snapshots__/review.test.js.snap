@@ -24,7 +24,7 @@ exports[`Should MoviePageReviews render correctly 1`] = `
         className="review__date"
         dateTime="2015-11-18"
       >
-        4
+        May 8, 2019
       </time>
     </footer>
   </blockquote>

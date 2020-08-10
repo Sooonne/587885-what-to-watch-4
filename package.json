@@ -4,6 +4,7 @@
   "private": true,
   "description": "Личный проект «Что посмотреть» от HTML Academy",
   "scripts": {
+    "eslint.autofix": "eslint --ext .jsx --ext .js --fix src/",
     "eslint": "eslint --ext .jsx --ext .js src/",
     "test": "npm run eslint && npm run test.jest",
     "build": "webpack --mode production",

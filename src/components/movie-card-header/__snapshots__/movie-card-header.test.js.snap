@@ -8,8 +8,8 @@ exports[`render MovieCardHeader 1`] = `
     className="movie-card__bg"
   >
     <img
-      alt="The Grand Budapest Hotel"
-      src="img/bg-the-grand-budapest-hotel.jpg"
+      alt="Bohemian Rhapsody"
+      src="/img/bg-the-grand-budapest-hotel.jpg"
     />
   </div>
   <h1
@@ -82,9 +82,9 @@ exports[`render MovieCardHeader 1`] = `
         className="movie-card__poster"
       >
         <img
-          alt="The Grand Budapest Hotel poster"
+          alt="Bohemian Rhapsody"
           height="327"
-          src="img/the-grand-budapest-hotel-poster.jpg"
+          src="/img/the-grand-budapest-hotel-poster.jpg"
           width="218"
         />
       </div>
